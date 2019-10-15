@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3a5fa593-7b13-4d31-9add-9d205993e728" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Initiative/InitiativeTracker.java" afterDir="false" />
+    <list default="true" id="3a5fa593-7b13-4d31-9add-9d205993e728" name="Default Changelist" comment="implemented the Dice enum and began structuring the DiceRoller class. No JavaDoc comments have been added yet.">
+      <change afterPath="$PROJECT_DIR$/src/DiceRoller/DiceRoller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/D&amp;D Utility.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Dungeonomicon.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Combatant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Initiative/Combatant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HitPointTracker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InitiativeTracker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dungeonomicon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DiceRoller/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DiceRoller/Dice.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +22,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="patrick-philbin" />
         <option value="hexedwalnut &lt;jteahe02@gmail.com&gt;" />
         <option value="Joseph Teahen" />
       </list>
@@ -65,53 +62,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
-      <module name="Dungeonomicon" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <module name="Dungeonomicon" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Dungeonomicon" />
@@ -135,6 +85,8 @@
       <workItem from="1569602748803" duration="1989000" />
       <workItem from="1569952880834" duration="635000" />
       <workItem from="1571089441909" duration="2767000" />
+      <workItem from="1571098702240" duration="443000" />
+      <workItem from="1571107701921" duration="1823000" />
     </task>
     <task id="LOCAL-00001" summary="I added stub methods and constructors to the combatant class.">
       <created>1571090994466</created>
@@ -164,6 +116,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="I added stub methods and constructors to the combatant class." />
-    <option name="LAST_COMMIT_MESSAGE" value="I added stub methods and constructors to the combatant class." />
+    <MESSAGE value="implemented the Dice enum and began structuring the DiceRoller class. No JavaDoc comments have been added yet." />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented the Dice enum and began structuring the DiceRoller class. No JavaDoc comments have been added yet." />
   </component>
 </project>
