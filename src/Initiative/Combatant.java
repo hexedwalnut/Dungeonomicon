@@ -1,3 +1,5 @@
+package Initiative;
+
 public class Combatant {
     //Variables---------------------------------------------------------------------------------------------------------
     private int hp;
@@ -66,7 +68,7 @@ public class Combatant {
      * Default constructor
      */
     Combatant() {
-        this.name = "no name";
+        this.name = "no value";
         this.hp = 4;
         this.ac = 10;
     }
