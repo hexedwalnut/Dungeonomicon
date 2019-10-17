@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a5fa593-7b13-4d31-9add-9d205993e728" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Initiative/InitiativeTracker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/D&amp;D Utility.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Dungeonomicon.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Combatant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Initiative/Combatant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HitPointTracker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InitiativeTracker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dungeonomicon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/D&amp;D Utility/BattleTracker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/D&amp;D Utility/HitPointTracker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/D&amp;D Utility/InitiativeTracker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/D&amp;D Utility/Main.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +32,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1QoCpFdSCvIaFd5ENW7rdb5Xssb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -65,53 +67,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
-      <module name="Dungeonomicon" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <module name="Dungeonomicon" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Dungeonomicon" />
@@ -135,6 +90,9 @@
       <workItem from="1569602748803" duration="1989000" />
       <workItem from="1569952880834" duration="635000" />
       <workItem from="1571089441909" duration="2767000" />
+      <workItem from="1571098610462" duration="29000" />
+      <workItem from="1571106106532" duration="14000" />
+      <workItem from="1571340937622" duration="395000" />
     </task>
     <task id="LOCAL-00001" summary="I added stub methods and constructors to the combatant class.">
       <created>1571090994466</created>
