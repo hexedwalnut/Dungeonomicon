@@ -5,7 +5,7 @@
 *.log
 
 # intelliJ files
-workspace.xml
+.idea/workspace.xml
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
