@@ -14,5 +14,6 @@ public class Dungeonomicon extends Application {
         Scene scene = new Scene(diceUI.getDicePane());
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 }
