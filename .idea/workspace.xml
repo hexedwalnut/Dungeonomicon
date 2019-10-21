@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3a5fa593-7b13-4d31-9add-9d205993e728" name="Default Changelist" comment="implemented the Dice enum and began structuring the DiceRoller class. No JavaDoc comments have been added yet.">
-      <change afterPath="$PROJECT_DIR$/src/DiceRoller/DiceRoller.java" afterDir="false" />
+    <list default="true" id="3a5fa593-7b13-4d31-9add-9d205993e728" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DiceRoller/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DiceRoller/Dice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/D&amp;D Utility/BattleTracker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/D&amp;D Utility/HitPointTracker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/D&amp;D Utility/InitiativeTracker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/D&amp;D Utility/Main.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +25,6 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="patrick-philbin" />
         <option value="hexedwalnut &lt;jteahe02@gmail.com&gt;" />
         <option value="Joseph Teahen" />
       </list>
@@ -30,6 +32,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1QoCpFdSCvIaFd5ENW7rdb5Xssb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -85,8 +90,9 @@
       <workItem from="1569602748803" duration="1989000" />
       <workItem from="1569952880834" duration="635000" />
       <workItem from="1571089441909" duration="2767000" />
-      <workItem from="1571098702240" duration="443000" />
-      <workItem from="1571107701921" duration="1823000" />
+      <workItem from="1571098610462" duration="29000" />
+      <workItem from="1571106106532" duration="14000" />
+      <workItem from="1571340937622" duration="395000" />
     </task>
     <task id="LOCAL-00001" summary="I added stub methods and constructors to the combatant class.">
       <created>1571090994466</created>
@@ -116,7 +122,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="I added stub methods and constructors to the combatant class." />
-    <MESSAGE value="implemented the Dice enum and began structuring the DiceRoller class. No JavaDoc comments have been added yet." />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented the Dice enum and began structuring the DiceRoller class. No JavaDoc comments have been added yet." />
+    <option name="LAST_COMMIT_MESSAGE" value="I added stub methods and constructors to the combatant class." />
   </component>
 </project>
