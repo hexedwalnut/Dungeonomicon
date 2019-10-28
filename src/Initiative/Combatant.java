@@ -1,111 +1,61 @@
 package Initiative;
 
+import java.util.ArrayList;
+
 public class Combatant {
     //Variables---------------------------------------------------------------------------------------------------------
-    private int hp;
-    private int ac;
-    private String name;
+    private int initiative = 0; //the initiative number for a combatant
+    private ArrayList<StatusEffect> statusEffects = null; //the status effect affecting a combatant
 
     //Methods-----------------------------------------------------------------------------------------------------------
 
     /**
-     * Gets the hit points of a combatant
-     *
-     * @return hp the hit points of the combatant
+     * The getter for initiative
+     * @return the initiative number
      */
-    public int getHp() {
-        return hp;
+    public int getInitiative() {
+        return initiative;
     }
 
     /**
-     * Gets the armor class of a combatant
-     *
-     * @return ac the armor class of the combatant
+     * The setter for initiative
+     * @param initiative the number to be set
      */
-    public int getAc() {
-        return ac;
+    public void setInitiative(int initiative) {
+        this.initiative = initiative;
     }
 
     /**
-     * Gets the name of the combatant
-     *
-     * @return name the name of the combatant
+     * Adds a status effect to the combatant
+     * @param statusEffect the status effect to be added
      */
-    public String getName() {
-        return name;
+    public void addStatusEffect(StatusEffect statusEffect){
+        statusEffects.add(statusEffect);
     }
 
     /**
-     * Sets the hit points of the combatant
-     *
-     * @param hp the hit points of the combatant
+     * Removes a status effect from the combatant
+     * @param statusEffect
      */
-    public void setHp(int hp) {
-        this.hp = hp;
+    public void removeStatusEffect(StatusEffect statusEffect){
+        statusEffects.remove(statusEffect);
     }
-
-    /**
-     * Sets the armor class of the combatant
-     *
-     * @param ac the armor class of the combatant
-     */
-    public void setAc(int ac) {
-        this.ac = ac;
-    }
-
-    /**
-     * Sets the name of the combatant
-     *
-     * @param name the name of the combatant
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
     //Constructors------------------------------------------------------------------------------------------------------
 
     /**
      * Default constructor
      */
     Combatant() {
-        this.name = "no value";
-        this.hp = 4;
-        this.ac = 10;
+        this.initiative = 0;
     }
 
     /**
-     * Name constructor
-     *
-     * @param name name of the combatant
+     * Constructor
+     * @param initiative the initiative of the combatant
+     * @param statusEffects the status effects of the combatant
      */
-    Combatant(String name) {
-        this.name = name;
-        this.hp = 4;
-        this.ac = 10;
-    }
-
-    /**
-     * Name and hit point constructor
-     *
-     * @param name name of the combatant
-     * @param hp   hit points of the combatant
-     */
-    Combatant(String name, int hp) {
-        this.name = name;
-        this.hp = hp;
-        this.ac = 10;
-    }
-
-    /**
-     * Name, hit point, armor class constructor
-     *
-     * @param name name of the combatant
-     * @param hp   hit points of the combatant
-     * @param ac   armor class of the combatant
-     */
-    Combatant(String name, int hp, int ac) {
-        this.name = name;
-        this.hp = hp;
-        this.ac = ac;
+    public Combatant(int initiative, ArrayList<StatusEffect> statusEffects) {
+        this.initiative = initiative;
+        this.statusEffects = statusEffects;
     }
 }

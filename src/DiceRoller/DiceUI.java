@@ -1,3 +1,5 @@
+package DiceRoller;
+
 import DiceRoller.Dice;
 import DiceRoller.DiceRoller;
 import javafx.scene.control.Button;
