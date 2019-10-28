@@ -6,6 +6,7 @@ import Initiative.PlayerCharacter;
 import Initiative.StatusEffect;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class SettingsStorage {
     private static final String fileLocation = "";
@@ -45,5 +46,8 @@ public class SettingsStorage {
             }
         }
         return output;
+    }
+
+    private SettingsStorage(){
     }
 }

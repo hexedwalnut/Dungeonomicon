@@ -15,7 +15,7 @@ public enum Dice {
         return this.sides;
     }
 
-    private Dice(int sides){
+    Dice(int sides){
         this.sides = sides;
     }
 }
