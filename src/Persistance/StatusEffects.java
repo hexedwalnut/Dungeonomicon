@@ -30,7 +30,7 @@ public class StatusEffects {
 
         //Use FileParser to get XML Document
         fileLocation = System.getenv("APPDATA") + fileLocation;
-        FileParser parser = new FileParser(fileLocation);
+        FileParser parser = new FileParser(fileLocation, false);
         Document doc = parser.ParseFile();
 
         //Get all effects as a list, then add them to the effects array
