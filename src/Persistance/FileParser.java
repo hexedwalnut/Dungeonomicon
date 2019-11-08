@@ -3,6 +3,11 @@ package Persistance;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
@@ -11,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class FileParser {
-    public static String defaultPath = "";
+    private static String defaultPath = "";
     private File file;
 
     /**
@@ -35,21 +40,39 @@ public class FileParser {
         }
     }
 
-    public void ParseFile() {
+    public Document ParseFile() {
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dbBuilder = dbFactory.newDocumentBuilder();
             Document doc = dbBuilder.parse(file);
             //This was recommended
             doc.getDocumentElement().normalize();
-
+            return doc;
         }
         catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
-    public void SaveToFile() {
+    public void SaveToFile(Document doc) {
+        try {
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(file);
+            transformer.transform(source, result);
+        }
+        catch (TransformerException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public String getDefaultPath() {
+        return defaultPath;
+    }
+
+    public void setDefaultPath(String newDefaultPath) {
+        defaultPath = newDefaultPath;
     }
 }

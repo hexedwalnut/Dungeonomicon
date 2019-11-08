@@ -25,6 +25,5 @@ public class StatusEffects {
             SettingsStorage.Initialize();
         }
         fileLocation = System.getenv("APPDATA") + fileLocation;
-
     }
 }
