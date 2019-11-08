@@ -20,10 +20,7 @@ public class FileParser {
      * @param fileName the name of the file you want to find/create
      */
     public FileParser(String fileName) {
-        if(defaultPath.isEmpty()) {
-            defaultPath = System.getenv("APPDATA") + "/Dungeonomicon/";
-        }
-        file = new File(defaultPath + fileName);
+        this(fileName, true);
     }
 
     public FileParser(String fileName, boolean useDefaultPath) {
