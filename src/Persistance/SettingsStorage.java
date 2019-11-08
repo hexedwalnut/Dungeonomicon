@@ -10,9 +10,12 @@ import java.util.Set;
 
 public class SettingsStorage {
     private static final String fileLocation = "";
+    private static boolean initialized = false;
     private static ArrayList<Combatant> combatants;
     private static ArrayList<StatusEffect> statusEffects;
     private static FileParser parser = new FileParser(fileLocation);
+
+    public static void Initialize() {parser.ParseFile();}
 
     public static void Load() {
         parser.ParseFile();
@@ -23,8 +26,7 @@ public class SettingsStorage {
     }
 
     public static ArrayList<Combatant> getCombatants() {
-        ArrayList<Combatant> output = new ArrayList<>();
-        output.addAll(combatants);
+        ArrayList<Combatant> output = new ArrayList<>(combatants);
         return output;
     }
 
@@ -46,6 +48,10 @@ public class SettingsStorage {
             }
         }
         return output;
+    }
+
+    public static boolean isInitialized() {
+        return initialized;
     }
 
     private SettingsStorage(){
