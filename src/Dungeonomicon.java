@@ -10,10 +10,12 @@ public class Dungeonomicon extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         DiceUI diceUI = new DiceUI();
         Scene scene = new Scene(diceUI.getDicePane());
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
+        primaryStage.sizeToScene();
         primaryStage.show();
 
     }
