@@ -1,36 +1,80 @@
 package DiceRoller;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class DiceRoller {
 
-    public static int roll(Dice die){
+    public int roll(Dice die){
         return (int)(Math.random()*die.getSides()) + 1;
     }
 
-    public static int roll(Dice die, int numRolled){
+    public int roll(Dice die, int numRolled){
         int total = 0;
+        if(numRolled < 1){
+            for(int i = 0; i > numRolled; i--){
+                total -= roll(die);
+            }
+            return total;
+        }
         for(int i = 0; i < numRolled; i++){
             total += roll(die);
         }
         return total;
     }
 
-    public static int roll(Dice die, int numRolled, int modifier){
+    public int roll(Dice die, int numRolled, int modifier){
         return roll(die,numRolled) + modifier;
     }
 
-    public static int rollCustom(int sides){
-        return 0;
+    public int rollCustom(int sides){
+        return (int)(Math.random()*sides) + 1;
     }
 
-    public static int rollCustom(int sides, int numRolled){
-        return 0;
+    public int rollCustom(int sides, int numRolled){
+        int total = 0;
+        if(numRolled > 1){
+            for(int i = 0; i > numRolled; i--){
+                total -= rollCustom(sides);
+            }
+            return total;
+        }
+        for(int i = 0; i < numRolled; i++){
+            total += rollCustom(sides);
+        }
+        return total;
     }
 
-    public static int rollCustom(int sides, int numRolled, int modifier){
-        return 0;
+    public int rollCustom(int sides, int numRolled, int modifier){
+        return rollCustom(sides, numRolled) + modifier;
     }
 
-    public static int rollCalc(String input){
-        return 0;
+    public int rollCalc(String input) throws RollFormatException{
+        Scanner reader = new Scanner(input);
+        reader.useDelimiter(" + ");
+        String nextInput;
+        ArrayList<Integer> resultStorage = new ArrayList<>();
+
+        while(reader.hasNext()) {
+            try {
+                nextInput = reader.next().trim().toLowerCase();
+                if (nextInput.contains("d")) {
+                    int numRolled = Integer.parseInt(nextInput.substring(0, nextInput.indexOf('d')));
+                    int sides = Integer.parseInt(nextInput.substring(nextInput.indexOf('d') + 1));
+                    resultStorage.add(rollCustom(sides, numRolled));
+                }
+                else {
+                    int mod = Integer.parseInt(nextInput);
+                }
+            }
+            catch(Exception e){
+                throw new RollFormatException("Invalid Custom Roll Format");
+            }
+        }
+        int total = 0;
+        for(Integer i : resultStorage){
+            total += i;
+        }
+        return total;
     }
 }
