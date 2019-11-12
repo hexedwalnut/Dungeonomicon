@@ -33,7 +33,7 @@ public class DiceRoller {
 
     public int rollCustom(int sides, int numRolled){
         int total = 0;
-        if(numRolled > 1){
+        if(numRolled < 1){
             for(int i = 0; i > numRolled; i--){
                 total -= rollCustom(sides);
             }
@@ -50,21 +50,21 @@ public class DiceRoller {
     }
 
     public int rollCalc(String input) throws RollFormatException{
-        Scanner reader = new Scanner(input);
-        reader.useDelimiter(" + ");
-        String nextInput;
+        char[] rawInput = input.toCharArray();
+        String[] splitInput = input.split("\\+");
         ArrayList<Integer> resultStorage = new ArrayList<>();
 
-        while(reader.hasNext()) {
+        for(String s : splitInput) {
+            s = s.trim();
             try {
-                nextInput = reader.next().trim().toLowerCase();
-                if (nextInput.contains("d")) {
-                    int numRolled = Integer.parseInt(nextInput.substring(0, nextInput.indexOf('d')));
-                    int sides = Integer.parseInt(nextInput.substring(nextInput.indexOf('d') + 1).trim());
+                if (s.contains("d")) {
+                    int numRolled = Integer.parseInt(s.substring(0, s.indexOf('d')));
+                    int sides = Integer.parseInt(s.substring(s.indexOf('d') + 1));
                     resultStorage.add(rollCustom(sides, numRolled));
                 }
                 else {
-                    int mod = Integer.parseInt(nextInput);
+                    int mod = Integer.parseInt(s);
+                    resultStorage.add(mod);
                 }
             }
             catch(Exception e){
@@ -75,7 +75,6 @@ public class DiceRoller {
         for(Integer i : resultStorage){
             total += i;
         }
-        reader.close();
         return total;
     }
 }
