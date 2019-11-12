@@ -4,7 +4,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DiceRoller {
+    //Class Variables---------------------------------------------------------------------------------------------------
+    private boolean sumRolls;
 
+    //Constructors------------------------------------------------------------------------------------------------------
+    public DiceRoller(){
+        this.sumRolls = true;
+    }
+
+    public DiceRoller(boolean sumRolls){
+        this.sumRolls = sumRolls;
+    }
+
+    //Methods-----------------------------------------------------------------------------------------------------------
     public int roll(Dice die){
         return (int)(Math.random()*die.getSides()) + 1;
     }
@@ -76,5 +88,13 @@ public class DiceRoller {
             total += i;
         }
         return total;
+    }
+
+    public void setSumRolls(boolean sumRolls){
+        this.sumRolls = sumRolls;
+    }
+
+    public boolean getSumRolls(){
+        return sumRolls;
     }
 }
