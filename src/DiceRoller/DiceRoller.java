@@ -60,7 +60,7 @@ public class DiceRoller {
                 nextInput = reader.next().trim().toLowerCase();
                 if (nextInput.contains("d")) {
                     int numRolled = Integer.parseInt(nextInput.substring(0, nextInput.indexOf('d')));
-                    int sides = Integer.parseInt(nextInput.substring(nextInput.indexOf('d') + 1));
+                    int sides = Integer.parseInt(nextInput.substring(nextInput.indexOf('d') + 1).trim());
                     resultStorage.add(rollCustom(sides, numRolled));
                 }
                 else {
@@ -75,6 +75,7 @@ public class DiceRoller {
         for(Integer i : resultStorage){
             total += i;
         }
+        reader.close();
         return total;
     }
 }
