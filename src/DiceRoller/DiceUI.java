@@ -79,14 +79,14 @@ public class DiceUI {
 
         //sets button actions
         DiceRoller diceRoller = new DiceRoller();
-        roll3.setOnAction(e -> intDiceOutput.set(diceRoller.roll(Dice.D3, 1)));
-        roll4.setOnAction(e -> intDiceOutput.set(diceRoller.roll(Dice.D4, 1)));
-        roll6.setOnAction(e -> intDiceOutput.set(diceRoller.roll(Dice.D6, 1)));
-        roll8.setOnAction(e -> intDiceOutput.set(diceRoller.roll(Dice.D8, 1)));
-        roll10.setOnAction(e -> intDiceOutput.set(diceRoller.roll(Dice.D10, 1)));
-        roll12.setOnAction(e -> intDiceOutput.set(diceRoller.roll(Dice.D12, 1)));
-        roll20.setOnAction(e -> intDiceOutput.set(diceRoller.roll(Dice.D20, 1)));
-        roll100.setOnAction(e -> intDiceOutput.set(diceRoller.roll(Dice.D100, 1)));
+        roll3.setOnAction(e -> intDiceOutput.set(diceRoller.rollCustom(3)));
+        roll4.setOnAction(e -> intDiceOutput.set(diceRoller.rollCustom(4)));
+        roll6.setOnAction(e -> intDiceOutput.set(diceRoller.rollCustom(6)));
+        roll8.setOnAction(e -> intDiceOutput.set(diceRoller.rollCustom(8)));
+        roll10.setOnAction(e -> intDiceOutput.set(diceRoller.rollCustom(10)));
+        roll12.setOnAction(e -> intDiceOutput.set(diceRoller.rollCustom(12)));
+        roll20.setOnAction(e -> intDiceOutput.set(diceRoller.rollCustom(20)));
+        roll100.setOnAction(e -> intDiceOutput.set(diceRoller.rollCustom(100)));
         custRoll.setOnAction(e -> {
             try {
                 intDiceOutput.set(diceRoller.rollCalc(custRoll.getText()));
@@ -94,7 +94,10 @@ public class DiceUI {
 
             }
         });
-        clear.setOnAction(e -> intDiceOutput.set(0));
+        clear.setOnAction(e -> {
+            intDiceOutput.set(0);
+            diceRoller.clearTotal();
+        });
 
         //adds everything to pane
         pane.add(roll3, 0, 3);

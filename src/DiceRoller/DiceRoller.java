@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class DiceRoller {
     //Class Variables---------------------------------------------------------------------------------------------------
     private boolean sumRolls;
+    private int rollTotal = 0;
 
     //Constructors------------------------------------------------------------------------------------------------------
     public DiceRoller(){
@@ -17,29 +18,11 @@ public class DiceRoller {
     }
 
     //Methods-----------------------------------------------------------------------------------------------------------
-    public int roll(Dice die){
-        return (int)(Math.random()*die.getSides()) + 1;
-    }
-
-    public int roll(Dice die, int numRolled){
-        int total = 0;
-        if(numRolled < 1){
-            for(int i = 0; i > numRolled; i--){
-                total -= roll(die);
-            }
-            return total;
-        }
-        for(int i = 0; i < numRolled; i++){
-            total += roll(die);
-        }
-        return total;
-    }
-
-    public int roll(Dice die, int numRolled, int modifier){
-        return roll(die,numRolled) + modifier;
-    }
-
     public int rollCustom(int sides){
+        if(sumRolls){
+            rollTotal += (int)(Math.random()*sides) + 1;
+            return rollTotal;
+        }
         return (int)(Math.random()*sides) + 1;
     }
 
@@ -54,10 +37,19 @@ public class DiceRoller {
         for(int i = 0; i < numRolled; i++){
             total += rollCustom(sides);
         }
+        if(sumRolls){
+            rollTotal += total;
+            return rollTotal;
+        }
         return total;
     }
 
     public int rollCustom(int sides, int numRolled, int modifier){
+        if(sumRolls){
+            rollCustom(sides, numRolled);
+            rollTotal += modifier;
+            return rollTotal;
+        }
         return rollCustom(sides, numRolled) + modifier;
     }
 
@@ -87,6 +79,10 @@ public class DiceRoller {
         for(Integer i : resultStorage){
             total += i;
         }
+        if(sumRolls){
+            rollTotal += total;
+            return rollTotal;
+        }
         return total;
     }
 
@@ -96,5 +92,9 @@ public class DiceRoller {
 
     public boolean getSumRolls(){
         return sumRolls;
+    }
+
+    public void clearTotal(){
+        rollTotal = 0;
     }
 }
