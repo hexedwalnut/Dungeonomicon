@@ -38,7 +38,6 @@ public class DiceRoller {
             total += rollCustom(sides);
         }
         if(sumRolls){
-            rollTotal += total;
             return rollTotal;
         }
         return total;
@@ -80,7 +79,6 @@ public class DiceRoller {
             total += i;
         }
         if(sumRolls){
-            rollTotal += total;
             return rollTotal;
         }
         return total;
@@ -92,6 +90,10 @@ public class DiceRoller {
 
     public boolean getSumRolls(){
         return sumRolls;
+    }
+
+    public int getRollTotal() {
+        return rollTotal;
     }
 
     public void clearTotal(){
