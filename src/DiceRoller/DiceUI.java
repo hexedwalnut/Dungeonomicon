@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  * Interface for the dice roller aspect of the Dungeonomicon using JavaFX.
- * This class creates the pane for the dice roller.
+ * This class creates the stage for the dice roller.
  *
  * @author Matt Schwennesen
  * @author Thomas Grifka
@@ -49,7 +49,7 @@ public class DiceUI {
     /**
      * @return - the GridPane with all of the listeners and buttons properly configured
      */
-    public GridPane getDicePane() {
+    private GridPane getDicePane() {
         GridPane pane = new GridPane();
         pane.setGridLinesVisible(false);
         modifier.setPrefColumnCount(0);
@@ -132,6 +132,9 @@ public class DiceUI {
         return pane;
     }
 
+    /**
+     * Builds and launches a separate stage with the dice information
+     */
     public void diceStage(){
         Stage diceStage = new Stage();
         diceStage.setResizable(false);
