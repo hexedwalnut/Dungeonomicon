@@ -2,14 +2,26 @@ package DiceRoller;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
+
+/**
+ * Interface for the dice roller aspect of the Dungeonomicon using JavaFX.
+ * This class creates the pane for the dice roller.
+ *
+ * @author Matt Schwennesen
+ * @author Thomas Grifka
+ */
 
 public class DiceUI {
+    //Variables---------------------------------------------------------------------------------------------------------
+
     //Labels
     private Label diceOutput = new Label("Test");
     private Label doubleDiceOutput = new Label("Test");
@@ -32,6 +44,11 @@ public class DiceUI {
     private TextField custRoll = new TextField();
 
 
+    //Methods-----------------------------------------------------------------------------------------------------------
+
+    /**
+     * @return - the GridPane with all of the listeners and buttons properly configured
+     */
     public GridPane getDicePane() {
         GridPane pane = new GridPane();
         pane.setGridLinesVisible(false);
@@ -113,5 +130,13 @@ public class DiceUI {
         pane.add(custRoll, 0, 6, 2, 1);
 
         return pane;
+    }
+
+    public void diceStage(){
+        Stage diceStage = new Stage();
+        diceStage.setResizable(false);
+        diceStage.setScene(new Scene(getDicePane()));
+        diceStage.sizeToScene();
+        diceStage.show();
     }
 }
