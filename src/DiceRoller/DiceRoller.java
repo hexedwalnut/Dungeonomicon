@@ -49,7 +49,7 @@ public class DiceRoller {
             rollTotal += modifier;
             return rollTotal;
         }
-        return rollCustom(sides, numRolled) + modifier;
+        return (rollCustom(sides, numRolled) + modifier);
     }
 
     public int rollCalc(String input) throws RollFormatException{

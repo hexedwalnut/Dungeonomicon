@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 /**
  * This class tests the DiceRoller class.
  *
- * Date Last Modified: 1/1/2020
+ * Date Last Modified: 1/7/2020
  * @author Joseph Teahen
  */
 class DiceRollerTest {
 
     //Basic Dice Rolling Test Cases No Sum------------------------------------------------------------------------------
     @Test
-    private void testRollCustomNoSum() {
+    public void testRollCustomNoSum() {
         DiceRoller roller = new DiceRoller(false);
         for (int i = 0; i < 20; i++) {
             int result = roller.rollCustom(100);
@@ -24,7 +24,7 @@ class DiceRollerTest {
     }
 
     @Test
-    private void testRollCustomWithMultipleDiceNoSum() {
+    public void testRollCustomWithMultipleDiceNoSum() {
         DiceRoller roller = new DiceRoller(false);
         for (int i = 0; i < 20; i++) {
             int result = roller.rollCustom(100, 2);
@@ -33,7 +33,7 @@ class DiceRollerTest {
     }
 
     @Test
-    private void testRollCustomWithMultipleDiceAndModifierNoSum() {
+    public void testRollCustomWithMultipleDiceAndModifierNoSum() {
         DiceRoller roller = new DiceRoller(false);
         for (int i = 0; i < 20; i++) {
             int result = roller.rollCustom(100, 2, 1);
@@ -43,7 +43,7 @@ class DiceRollerTest {
 
     //Basic Dice Rolling Test Cases With Sum----------------------------------------------------------------------------
     @Test
-    private void testRollCustomWithSum() {
+    public void testRollCustomWithSum() {
         DiceRoller roller = new DiceRoller(true);
         for (int j = 0; j < 20; j++) {
             for (int i = 0; i < 20; i++) {
@@ -57,7 +57,7 @@ class DiceRollerTest {
     }
 
     @Test
-    private void testRollCustomWithMultipleDiceWithSum() {
+    public void testRollCustomWithMultipleDiceWithSum() {
         DiceRoller roller = new DiceRoller(true);
         for (int j = 0; j < 20; j++) {
             for (int i = 0; i < 20; i++) {
@@ -70,7 +70,7 @@ class DiceRollerTest {
     }
 
     @Test
-    private void testRollCustomWithMultipleDiceAndModifierWithSum() {
+    public void testRollCustomWithMultipleDiceAndModifierWithSum() {
         DiceRoller roller = new DiceRoller(true);
         for (int j = 0; j < 20; j++) {
             for (int i = 0; i < 20; i++) {
@@ -84,7 +84,7 @@ class DiceRollerTest {
 
     //RollCalc Test Cases General Test Nonsense-------------------------------------------------------------------------
     @Test
-    private void rollCalcExceptionThrown() {
+    public void rollCalcExceptionThrown() {
         DiceRoller roller = new DiceRoller(false);
         boolean exceptionThrown = false;
         try {
@@ -97,7 +97,7 @@ class DiceRollerTest {
 
     //RollCalc Test Cases No Sum----------------------------------------------------------------------------------------
     @Test
-    private void rollCalcOneDiceInputNoSum() {
+    public void rollCalcOneDiceInputNoSum() {
         DiceRoller roller = new DiceRoller(false);
         for (int i = 0; i < 20; i++) {
             try {
@@ -110,7 +110,7 @@ class DiceRollerTest {
     }
 
     @Test
-    private void rollCalcMultipleOfTheSameDiceInputNoSum() {
+    public void rollCalcMultipleOfTheSameDiceInputNoSum() {
         DiceRoller roller = new DiceRoller(false);
         for (int i = 0; i < 20; i++) {
             try {
@@ -123,7 +123,7 @@ class DiceRollerTest {
     }
 
     @Test
-    private void rollCalcMultipleDiceOfTheSameDicePlusModifierInputNoSum() {
+    public void rollCalcMultipleDiceOfTheSameDicePlusModifierInputNoSum() {
         DiceRoller roller = new DiceRoller(false);
         for (int i = 0; i < 20; i++) {
             try {
@@ -136,7 +136,7 @@ class DiceRollerTest {
     }
 
     @Test
-    private void rollCalcMultipleDiceDifferentDiceInputNoSum() {
+    public void rollCalcMultipleDiceDifferentDiceInputNoSum() {
         DiceRoller roller = new DiceRoller(false);
         for (int i = 0; i < 20; i++) {
             try {
@@ -149,7 +149,7 @@ class DiceRollerTest {
     }
 
     @Test
-    private void rollCalcMultipleDiceDifferentDicePlusModifierInputNoSum() {
+    public void rollCalcMultipleDiceDifferentDicePlusModifierInputNoSum() {
         DiceRoller roller = new DiceRoller(false);
         for (int i = 0; i < 20; i++) {
             try {
@@ -163,7 +163,7 @@ class DiceRollerTest {
 
     //RollCalc Test Cases With Sum--------------------------------------------------------------------------------------
     @Test
-    private void rollCalcOneDiceInputWithSum() {
+    public void rollCalcOneDiceInputWithSum() {
         DiceRoller roller = new DiceRoller(true);
         for (int j = 0; j < 20; j++) {
             for (int i = 0; i < 20; i++) {
@@ -180,7 +180,7 @@ class DiceRollerTest {
     }
 
     @Test
-    private void rollCalcMultipleOfTheSameDiceInputWithSum() {
+    public void rollCalcMultipleOfTheSameDiceInputWithSum() {
         DiceRoller roller = new DiceRoller(true);
         for (int j = 0; j < 20; j++) {
             for (int i = 0; i < 20; i++) {
@@ -197,7 +197,7 @@ class DiceRollerTest {
     }
 
     @Test
-    private void rollCalcMultipleDiceOfTheSameDicePlusModifierInputWithSum() {
+    public void rollCalcMultipleDiceOfTheSameDicePlusModifierInputWithSum() {
         DiceRoller roller = new DiceRoller(true);
         for (int j = 0; j < 20; j++) {
             for (int i = 0; i < 20; i++) {
@@ -214,7 +214,7 @@ class DiceRollerTest {
     }
 
     @Test
-    private void rollCalcMultipleDiceDifferentDiceInputWithSum() {
+    public void rollCalcMultipleDiceDifferentDiceInputWithSum() {
         DiceRoller roller = new DiceRoller(true);
         for (int j = 0; j < 20; j++) {
             for (int i = 0; i < 20; i++) {
@@ -231,7 +231,7 @@ class DiceRollerTest {
     }
 
     @Test
-    private void rollCalcMultipleDiceDifferentDicePlusModifierInputWithSum() {
+    public void rollCalcMultipleDiceDifferentDicePlusModifierInputWithSum() {
         DiceRoller roller = new DiceRoller(true);
         for (int j = 0; j < 20; j++) {
             for (int i = 0; i < 20; i++) {
@@ -249,12 +249,40 @@ class DiceRollerTest {
 
     //Clear Total Test--------------------------------------------------------------------------------------------------
     @Test
-    private void clearTotal() {
+    public void clearTotal() {
         DiceRoller roller = new DiceRoller(true);
         for (int i = 0; i < 20; i++) {
             roller.rollCustom(4);
         }
         roller.clearTotal();
         Assert.assertTrue(roller.getSumRolls() == true);
+    }
+
+    //Modifier Tests----------------------------------------------------------------------------------------------------
+    @Test
+    public void oneDiceModifierTestBaseFunction() {
+        DiceRoller roller = new DiceRoller(false);
+        for (int i = 0; i < 10000000; i++) {
+            int result = roller.rollCustom(4, 1, 100);
+            Assert.assertTrue(result > 100);
+        }
+    }
+
+    @Test
+    public void oneDiceModifierTestStringFunction() throws RollFormatException {
+        DiceRoller roller = new DiceRoller(false);
+        for (int i = 0; i < 10000000; i++) {
+            int result = roller.rollCalc("1d4+100");
+            Assert.assertTrue(result > 100);
+        }
+    }
+
+    @Test
+    public void multipleDiceModifierTestBaseFunction() {
+        DiceRoller roller = new DiceRoller(false);
+        for (int i = 0; i < 10000000; i++) {
+            int result = roller.rollCustom(12, 4, 29);
+            Assert.assertTrue(result > 29);
+        }
     }
 }
