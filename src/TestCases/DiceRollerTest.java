@@ -272,7 +272,7 @@ class DiceRollerTest {
     public void oneDiceModifierTestStringFunction() throws RollFormatException {
         DiceRoller roller = new DiceRoller(false);
         for (int i = 0; i < 10000000; i++) {
-            int result = roller.rollCalc("1d4+100");
+            int result = roller.rollCalc("4d12+100");
             Assert.assertTrue(result > 100);
         }
     }
