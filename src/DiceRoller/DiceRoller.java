@@ -67,6 +67,7 @@ public class DiceRoller {
                 }
                 else {
                     int mod = Integer.parseInt(s);
+                    rollTotal += mod;
                     resultStorage.add(mod);
                 }
             }

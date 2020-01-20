@@ -63,7 +63,7 @@ public class DiceUI {
         diceResult.getChildren().addAll(doubleDiceOutput, diceOutput, halfDiceOutput, quarterDiceOutput);
         pane.add(diceResult, 0, 0, 3, 3);
 
-        doubleDiceOutput.textProperty().bind(intDiceOutput.multiply(2).asString());
+        doubleDiceOutput.textProperty().bind(intDiceOutput.multiply(2.0).asString());
         diceOutput.textProperty().bind(intDiceOutput.asString());
         halfDiceOutput.textProperty().bind(intDiceOutput.divide(2.0).asString());
         quarterDiceOutput.textProperty().bind(intDiceOutput.divide(4.0).asString());
