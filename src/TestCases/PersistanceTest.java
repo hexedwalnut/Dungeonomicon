@@ -13,6 +13,7 @@ class PersistanceTest {
     public void testInit() {
         StatusEffects statusEffects = new StatusEffects();
         System.out.println(statusEffects.toString());
+        statusEffects.Save();
         Assert.assertEquals(1,1);
     }
 }

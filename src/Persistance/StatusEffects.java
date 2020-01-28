@@ -16,6 +16,8 @@ public class StatusEffects {
     private static String fileLocation = "/Dungeonomicon/StatusEffects.xml";
     private static ArrayList<StatusEffect> effects = new ArrayList<>();
     private static boolean initialized = false;
+    private static FileParser parser;
+    private static Document doc;
 
     public StatusEffects() {
         if(!initialized) {
@@ -26,12 +28,12 @@ public class StatusEffects {
     /**
      * Loads all Status Effects from XML into Memory
      */
-    public void Initialize() {
+    private void Initialize() {
 
         //Use FileParser to get XML Document
         fileLocation = System.getenv("APPDATA") + fileLocation;
-        FileParser parser = new FileParser(fileLocation, false);
-        Document doc = parser.ParseFile();
+        parser = new FileParser(fileLocation, false);
+        doc = parser.ParseFile();
 
         //Get all effects as a list, then add them to the effects array
         NodeList xmlEffects = doc.getDocumentElement().getElementsByTagName("statusEffect");
@@ -44,12 +46,48 @@ public class StatusEffects {
     }
 
     /**
+     * Overwrites all saved status effects with what is stored in memory.
+     */
+    public void Save() {
+        parser.SaveToFile(doc);
+    }
+
+    /**
      * Returns all status effects
      *
      * @return an ArrayList of all the effects
      */
     public ArrayList<StatusEffect> getAllEffects() {
         return new ArrayList<>(effects);
+    }
+
+    /**
+     * Gets the names of all the conditions
+     *
+     * @return All names in an ArrayList
+     */
+    public ArrayList<String> getAllEffectNames() {
+        ArrayList<String> output = new ArrayList<>();
+        for(StatusEffect effect : effects) {
+            output.add(effect.getName());
+        }
+        return output;
+    }
+
+    /**
+     * Gets the status effect with the matching name
+     *
+     * @param name Name of the status effect
+     *
+     * @return the matching StatusEffect, or null if not found
+     */
+    public StatusEffect getEffectByName(String name) {
+        for(StatusEffect effect : effects) {
+            if(effect.getName().equals(name)) {
+                return effect;
+            }
+        }
+        return null;
     }
 
     /**
@@ -67,9 +105,5 @@ public class StatusEffects {
         }
         output.append("}");
         return output.toString();
-    }
-
-    public static void main(String[] args) {
-
     }
 }

@@ -10,10 +10,13 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.*;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.StringReader;
 
 public class FileParser {
     private static String defaultPath = "";
@@ -37,6 +40,19 @@ public class FileParser {
         }
         else {
             file = new File(fileName);
+        }
+        if(!file.exists()) {
+            try {
+                String defaultXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><doc></doc>";
+                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder dbBuilder = dbFactory.newDocumentBuilder();
+                Document doc = dbBuilder.parse(new InputSource(new StringReader(defaultXML)));
+
+                doc.getDocumentElement().normalize();
+                SaveToFile(doc);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
