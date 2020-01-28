@@ -22,7 +22,7 @@ public class SettingsStorage {
     }
 
     public static void Save() {
-        parser.SaveToFile();
+        //parser.SaveToFile();
     }
 
     public static ArrayList<Combatant> getCombatants() {
