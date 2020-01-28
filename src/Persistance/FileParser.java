@@ -75,4 +75,20 @@ public class FileParser {
     public void setDefaultPath(String newDefaultPath) {
         defaultPath = newDefaultPath;
     }
+
+    public static void main(String[] args) {
+
+        try {
+            File xmlFile = new File(System.getenv("APPDATA") + "/Dungeonomicon/StatusEffects.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(xmlFile);
+
+            doc.getDocumentElement().normalize();
+
+            System.out.println("Root Element: " + doc.getDocumentElement().getNodeName());
+        } catch ( Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -19,7 +19,7 @@ public class StatusEffects {
 
     public StatusEffects() {
         if(!initialized) {
-            Initialize();
+                Initialize();
         }
     }
 
@@ -67,5 +67,9 @@ public class StatusEffects {
         }
         output.append("}");
         return output.toString();
+    }
+
+    public static void main(String[] args) {
+
     }
 }

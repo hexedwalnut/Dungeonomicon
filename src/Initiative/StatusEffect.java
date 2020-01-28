@@ -2,8 +2,8 @@ package Initiative;
 
 public class StatusEffect {
     //Variables---------------------------------------------------------------------------------------------------------
-    private String name = ""; //Status effect Name
-    private String description = ""; //Status effect Description
+    private String name; //Status effect Name
+    private String description; //Status effect Description
 
     //Methods-----------------------------------------------------------------------------------------------------------
 
@@ -45,8 +45,7 @@ public class StatusEffect {
      * Default Constructor
      */
     StatusEffect() {
-        this.name = "NO NAME";
-        this.description = "NO DESCRIPTION";
+        this("NO NAME","NO DESCRIPTION");
     }
 
     /**
@@ -57,5 +56,14 @@ public class StatusEffect {
     public StatusEffect(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Status Effect: {\"name\":\"" +
+                name +
+                "\",\"description\":\"" +
+                description +
+                "\"}";
     }
 }
