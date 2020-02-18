@@ -1,4 +1,5 @@
 import DiceRoller.DiceUI;
+import Initiative.InitiativeUI;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -37,7 +38,6 @@ public class Dungeonomicon extends Application {
         primaryStage.setScene(mainScene());
         primaryStage.sizeToScene();
         primaryStage.show();
-
     }
 
     /**
@@ -63,7 +63,7 @@ public class Dungeonomicon extends Application {
 
         Button initTracker = new Button("Initiative Tracker");
         initTracker.maxWidthProperty().bind(pane.widthProperty());
-        //TODO create initiative tracker stage
+        initTracker.setOnAction(event -> new InitiativeUI().initStage());
 
         pane.setPadding(new Insets(10, 10, 10, 10));
         pane.spacingProperty().set(10);
