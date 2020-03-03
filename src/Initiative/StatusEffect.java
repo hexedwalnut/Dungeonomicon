@@ -1,5 +1,8 @@
 package Initiative;
 
+/**
+ * This class holds a status effect for quick reference by the program
+ */
 public class StatusEffect {
     //Variables---------------------------------------------------------------------------------------------------------
     private String name; //Status effect Name
