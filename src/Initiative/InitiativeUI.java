@@ -1,7 +1,5 @@
 package Initiative;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,7 +9,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
 
 
 public class InitiativeUI {
@@ -29,9 +26,12 @@ public class InitiativeUI {
 
         Button nextTurn = new Button("Next Turn");
         nextTurn.setOnAction(event -> System.out.println("nextTurn pushed")); //temp-Change when nextTurn implemented
+        Button newCombatant = new Button("Add New Combatant");
+        newCombatant.setOnAction(event -> new addNewCombatant().newCombatantStage());
 
         //Putting objects into the boxs
         bottomBox.getChildren().add(nextTurn);
+        bottomBox.getChildren().add(newCombatant);
         topBox.getChildren().add(currentCombatant);
 
         //putting boxes/list into borderPane
@@ -48,6 +48,7 @@ public class InitiativeUI {
         initStage.setResizable(false);
         initStage.setScene(new Scene(getInitPane()));
         initStage.sizeToScene();
+        initStage.setTitle("Initiative Tracker");
         initStage.show();
     }
 }
