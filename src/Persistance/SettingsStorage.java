@@ -14,6 +14,7 @@ public class SettingsStorage {
     private static ArrayList<Combatant> combatants;
     private static ArrayList<StatusEffect> statusEffects;
     private static FileParser parser = new FileParser(fileLocation);
+    private static boolean sumRollsEnabled = false;
 
     public static void Initialize() {parser.ParseFile();}
 
@@ -53,6 +54,10 @@ public class SettingsStorage {
     public static boolean isInitialized() {
         return initialized;
     }
+
+    public static boolean isSumRollsEnabled() {return sumRollsEnabled; }
+
+    public static void setSumRollsEnabled(boolean enabled) {sumRollsEnabled = enabled;}
 
     private SettingsStorage(){
     }
