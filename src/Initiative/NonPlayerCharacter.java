@@ -1,14 +1,24 @@
 package Initiative;
 
+import javafx.scene.layout.Pane;
+
 import java.util.ArrayList;
 
 public class NonPlayerCharacter extends Combatant {
     //Variables---------------------------------------------------------------------------------------------------------
     private int hitPoints = 0; //the hit point total of a NonPlayerCharacter
     private int armorClass = 0; //the armor class of a NonPlayerCharacter
-    private String name = ""; //the name of a NonPlayerCharacter
 
     //Methods-----------------------------------------------------------------------------------------------------------
+
+    /**
+     * Gets the pane to display the character's stats
+     * @return custom display pane
+     */
+    @Override
+    public Pane getPane(){
+        return null;
+    }
 
     /**
      * The getter for hitPoints
@@ -24,14 +34,6 @@ public class NonPlayerCharacter extends Combatant {
      */
     public int getArmorClass() {
         return armorClass;
-    }
-
-    /**
-     * The getter for name
-     * @return name
-     */
-    public String getName() {
-        return name;
     }
 
     /**
@@ -51,14 +53,6 @@ public class NonPlayerCharacter extends Combatant {
     }
 
     /**
-     * The setter for name
-     * @param name the name to be set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
      * This method increments the NonPlayerCharacter's hit points by an increment
      * @param increment how much the hit points are incremented by
      */
@@ -75,11 +69,16 @@ public class NonPlayerCharacter extends Combatant {
         super();
         this.hitPoints = 0;
         this.armorClass = 0;
-        this.name = "No Name";
+    }
+
+    public NonPlayerCharacter(int initiative, String name, int hitPoints, int armorClass){
+        super(initiative, name);
+        this.hitPoints = hitPoints;
+        this.armorClass = armorClass;
     }
 
     /**
-     * Constructor
+     * Constructor for persistent status effects
      * @param initiative the initiative of a NonPlayerCharacter
      * @param statusEffects the status effects affecting a NonPlayerCharacter
      * @param hitPoints the hit point total of a NonPlayerCharacter
@@ -87,9 +86,8 @@ public class NonPlayerCharacter extends Combatant {
      * @param name the name of a NonPlayerCharacter
      */
     public NonPlayerCharacter(int initiative, ArrayList<StatusEffect> statusEffects, int hitPoints, int armorClass, String name) {
-        super(initiative, statusEffects);
+        super(initiative, statusEffects, name);
         this.hitPoints = hitPoints;
         this.armorClass = armorClass;
-        this.name = name;
     }
 }

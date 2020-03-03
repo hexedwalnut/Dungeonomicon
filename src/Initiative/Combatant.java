@@ -4,9 +4,10 @@ import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 
-public abstract class Combatant {
+public abstract class Combatant implements Comparable<Combatant> {
     //Variables---------------------------------------------------------------------------------------------------------
     private int initiative = 0; //the initiative number for a combatant
+    private String name = "";
     private ArrayList<StatusEffect> statusEffects = null; //the status effect affecting a combatant
 
     //Constructors------------------------------------------------------------------------------------------------------
@@ -16,16 +17,29 @@ public abstract class Combatant {
      */
     Combatant() {
         this.initiative = 0;
+        this.name = "NoName";
     }
 
     /**
-     * Constructor
+     *
+     * @param initiative the initiative of the combatant
+     * @param name the name of the combatant
+     */
+    public Combatant(int initiative, String name){
+        this.initiative = initiative;
+        this.name = name;
+    }
+
+    /**
+     * Constructor for status effects between battles
      * @param initiative the initiative of the combatant
      * @param statusEffects the status effects of the combatant
+     * @param name the name of the combatant
      */
-    public Combatant(int initiative, ArrayList<StatusEffect> statusEffects) {
+    public Combatant(int initiative, ArrayList<StatusEffect> statusEffects, String name) {
         this.initiative = initiative;
         this.statusEffects = statusEffects;
+        this.name = name;
     }
 
     //Methods-----------------------------------------------------------------------------------------------------------
@@ -49,6 +63,18 @@ public abstract class Combatant {
     }
 
     /**
+     * Compare method for comparing initiative
+     * return > 0 - This combatant's initiative is greater
+     * return 0 - The initiatives are equal
+     * return < 0 - This combatant's initiative is less
+     * @param o the combatant to compare initiative with
+     */
+    @Override
+    public int compareTo(Combatant o) {
+        return this.initiative - o.getInitiative();
+    }
+
+    /**
      * The getter for initiative
      * @return the initiative number
      */
@@ -62,5 +88,21 @@ public abstract class Combatant {
      */
     public void setInitiative(int initiative) {
         this.initiative = initiative;
+    }
+
+    /**
+     * The getter for the name
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * The setter for the name
+     * @param name the name to be set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 }
