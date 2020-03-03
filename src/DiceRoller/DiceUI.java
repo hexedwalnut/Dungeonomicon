@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -39,10 +40,11 @@ public class DiceUI {
     private Button roll20 = new Button("Roll D20");
     private Button roll100 = new Button("Roll D100");
     private Button clear = new Button("Clear");
+
+    private RadioButton sumRoll = new RadioButton("Sum Rolls");
     //TextFields
     private TextField modifier = new TextField();
     private TextField custRoll = new TextField();
-
 
     //Methods-----------------------------------------------------------------------------------------------------------
 
@@ -61,7 +63,7 @@ public class DiceUI {
         VBox diceResult = new VBox();
         diceResult.setAlignment(Pos.CENTER);
         diceResult.getChildren().addAll(doubleDiceOutput, diceOutput, halfDiceOutput, quarterDiceOutput);
-        pane.add(diceResult, 0, 0, 3, 3);
+        pane.add(diceResult, 0, 1, 3, 3);
 
         doubleDiceOutput.textProperty().bind(intDiceOutput.multiply(2.0).asString());
         diceOutput.textProperty().bind(intDiceOutput.asString());
@@ -72,7 +74,6 @@ public class DiceUI {
         modifier.setStyle("-fx-alignment: center");
 
         custRoll.setPromptText("Custom Roll");
-
 
         //allows the nodes to grow to desired size
         roll3.setMaxWidth(Double.MAX_VALUE);
@@ -116,18 +117,23 @@ public class DiceUI {
             diceRoller.clearTotal();
         });
 
+        //Sum rolls radio button
+        sumRoll.selectedProperty().addListener(((observable, oldValue, newValue) -> diceRoller.setSumRolls(newValue)));
+        sumRoll.fire();
+        pane.add(sumRoll, 0, 0);
+
         //adds everything to pane
-        pane.add(roll3, 0, 3);
-        pane.add(roll4, 1, 3);
-        pane.add(roll6, 2, 3);
-        pane.add(roll8, 0, 4);
-        pane.add(roll10, 1, 4);
-        pane.add(roll12, 2, 4);
-        pane.add(roll20, 0, 5);
-        pane.add(roll100, 1, 5);
-        pane.add(modifier, 2, 5);
-        pane.add(clear, 2, 6);
-        pane.add(custRoll, 0, 6, 2, 1);
+        pane.add(roll3, 0, 4);
+        pane.add(roll4, 1, 4);
+        pane.add(roll6, 2, 4);
+        pane.add(roll8, 0, 5);
+        pane.add(roll10, 1, 5);
+        pane.add(roll12, 2, 5);
+        pane.add(roll20, 0, 6);
+        pane.add(roll100, 1, 6);
+        pane.add(modifier, 2, 6);
+        pane.add(clear, 2, 7);
+        pane.add(custRoll, 0, 7, 2, 1);
 
         return pane;
     }

@@ -30,7 +30,7 @@ public class InitiativeUI {
         Button nextTurn = new Button("Next Turn");
         nextTurn.setOnAction(event -> System.out.println("nextTurn pushed")); //temp-Change when nextTurn implemented
 
-        //Putting objects into the boxs
+        //Putting objects into the boxes
         bottomBox.getChildren().add(nextTurn);
         topBox.getChildren().add(currentCombatant);
 
