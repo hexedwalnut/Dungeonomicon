@@ -1,6 +1,9 @@
 package Initiative;
 
 import javafx.scene.layout.Pane;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import java.util.ArrayList;
 
@@ -36,5 +39,19 @@ public class PlayerCharacter extends Combatant {
      */
     public PlayerCharacter(int initiative, ArrayList<StatusEffect> statusEffects, String name) {
         super(initiative, statusEffects, name);
+    }
+
+    @Override
+    public Element toXMLElement(Document doc) {
+        //Todo write this
+        return null;
+    }
+
+    @Override
+    public void generateFromXMLNode(Node node) {
+        //Todo get name
+        //Todo get Status effects
+        //Todo get initiative
+        //Todo figure out why stuff isn't done
     }
 }

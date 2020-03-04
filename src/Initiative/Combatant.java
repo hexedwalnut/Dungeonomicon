@@ -3,6 +3,9 @@ package Initiative;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 public abstract class Combatant implements Comparable<Combatant> {
     //Variables---------------------------------------------------------------------------------------------------------
@@ -56,11 +59,17 @@ public abstract class Combatant implements Comparable<Combatant> {
 
     /**
      * Removes a status effect from the combatant
-     * @param statusEffect
+     * @param statusEffect the status effect to remove from the combatant
      */
     public void removeStatusEffect(StatusEffect statusEffect){
         statusEffects.remove(statusEffect);
     }
+
+    /**
+     * Allow access to what status effects the combatant has
+     * @return An array list of status effects
+     */
+    public ArrayList<StatusEffect> getStatusEffects() {return this.statusEffects;}
 
     /**
      * Compare method for comparing initiative
@@ -105,4 +114,14 @@ public abstract class Combatant implements Comparable<Combatant> {
     public void setName(String name) {
         this.name = name;
     }
+
+    /**
+     * Generates an XML Element for the Combatant
+     *
+     * @param doc The document
+     * @return
+     */
+    public abstract Element toXMLElement(Document doc);
+
+    public abstract void generateFromXMLNode(Node node);
 }
