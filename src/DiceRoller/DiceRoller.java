@@ -1,7 +1,6 @@
 package DiceRoller;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class DiceRoller {
     //Class Variables---------------------------------------------------------------------------------------------------
@@ -53,7 +52,6 @@ public class DiceRoller {
     }
 
     public int rollCalc(String input) throws RollFormatException{
-        char[] rawInput = input.toCharArray();
         String[] splitInput = input.split("\\+");
         ArrayList<Integer> resultStorage = new ArrayList<>();
 

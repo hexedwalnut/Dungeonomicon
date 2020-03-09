@@ -1,13 +1,87 @@
 package Initiative;
 
-import java.util.ArrayList;
+import javafx.scene.layout.Pane;
 
-public class Combatant {
+import java.util.ArrayList;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
+public abstract class Combatant implements Comparable<Combatant> {
     //Variables---------------------------------------------------------------------------------------------------------
     private int initiative = 0; //the initiative number for a combatant
+    private String name = "";
     private ArrayList<StatusEffect> statusEffects = null; //the status effect affecting a combatant
 
+    //Constructors------------------------------------------------------------------------------------------------------
+
+    /**
+     * Default constructor
+     */
+    Combatant() {
+        this.initiative = 0;
+        this.name = "NoName";
+    }
+
+    /**
+     *
+     * @param initiative the initiative of the combatant
+     * @param name the name of the combatant
+     */
+    public Combatant(int initiative, String name){
+        this.initiative = initiative;
+        this.name = name;
+    }
+
+    /**
+     * Constructor for status effects between battles
+     * @param initiative the initiative of the combatant
+     * @param statusEffects the status effects of the combatant
+     * @param name the name of the combatant
+     */
+    public Combatant(int initiative, ArrayList<StatusEffect> statusEffects, String name) {
+        this.initiative = initiative;
+        this.statusEffects = statusEffects;
+        this.name = name;
+    }
+
     //Methods-----------------------------------------------------------------------------------------------------------
+
+    public abstract Pane getPane();
+
+    /**
+     * Adds a status effect to the combatant
+     * @param statusEffect the status effect to be added
+     */
+    public void addStatusEffect(StatusEffect statusEffect){
+        statusEffects.add(statusEffect);
+    }
+
+    /**
+     * Removes a status effect from the combatant
+     * @param statusEffect the status effect to remove from the combatant
+     */
+    public void removeStatusEffect(StatusEffect statusEffect){
+        statusEffects.remove(statusEffect);
+    }
+
+    /**
+     * Allow access to what status effects the combatant has
+     * @return An array list of status effects
+     */
+    public ArrayList<StatusEffect> getStatusEffects() {return this.statusEffects;}
+
+    /**
+     * Compare method for comparing initiative
+     * return > 0 - This combatant's initiative is greater
+     * return 0 - The initiatives are equal
+     * return < 0 - This combatant's initiative is less
+     * @param o the combatant to compare initiative with
+     */
+    @Override
+    public int compareTo(Combatant o) {
+        return this.initiative - o.getInitiative();
+    }
 
     /**
      * The getter for initiative
@@ -26,36 +100,28 @@ public class Combatant {
     }
 
     /**
-     * Adds a status effect to the combatant
-     * @param statusEffect the status effect to be added
+     * The getter for the name
+     * @return the name
      */
-    public void addStatusEffect(StatusEffect statusEffect){
-        statusEffects.add(statusEffect);
+    public String getName() {
+        return name;
     }
 
     /**
-     * Removes a status effect from the combatant
-     * @param statusEffect
+     * The setter for the name
+     * @param name the name to be set
      */
-    public void removeStatusEffect(StatusEffect statusEffect){
-        statusEffects.remove(statusEffect);
-    }
-    //Constructors------------------------------------------------------------------------------------------------------
-
-    /**
-     * Default constructor
-     */
-    Combatant() {
-        this.initiative = 0;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
-     * Constructor
-     * @param initiative the initiative of the combatant
-     * @param statusEffects the status effects of the combatant
+     * Generates an XML Element for the Combatant
+     *
+     * @param doc The document
+     * @return
      */
-    public Combatant(int initiative, ArrayList<StatusEffect> statusEffects) {
-        this.initiative = initiative;
-        this.statusEffects = statusEffects;
-    }
+    public abstract Element toXMLElement(Document doc);
+
+    public abstract void generateFromXMLNode(Node node);
 }

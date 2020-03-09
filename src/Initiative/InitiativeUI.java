@@ -47,8 +47,7 @@ public class InitiativeUI {
             refresh();
         });
 
-        //Putting objects into the boxs
-        gPane.add(listView, 0,0);
+
         bottomBox.getChildren().add(nextTurn);
         bottomBox.getChildren().add(newCombatant);
         bottomBox.getChildren().add(removeCombatant);

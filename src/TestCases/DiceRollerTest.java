@@ -255,7 +255,7 @@ class DiceRollerTest {
             roller.rollCustom(4);
         }
         roller.clearTotal();
-        Assert.assertTrue(roller.getSumRolls() == true);
+        Assert.assertTrue(roller.getSumRolls());
     }
 
     //Modifier Tests----------------------------------------------------------------------------------------------------

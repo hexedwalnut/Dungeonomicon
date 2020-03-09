@@ -47,6 +47,7 @@ public class StatusEffects {
 
     /**
      * Overwrites all saved status effects with what is stored in memory.
+     * //ToDo: Make this actually save what is in memory (the doc never gets updated);
      */
     public void Save() {
         parser.SaveToFile(doc);

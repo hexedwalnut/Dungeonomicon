@@ -1,32 +1,35 @@
 package Initiative;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class InitiativeTracker {
     //Variables---------------------------------------------------------------------------------------------------------
     private ArrayList<Combatant> combatants = null; //list of combatants
+    private int cursor = 0;
 
     //Methods-----------------------------------------------------------------------------------------------------------
-
     /**
      * Moves to the next turn in initiative
      */
-    public void nextTurn(){
-        //TODO
+    public Combatant nextTurn(){
+        cursor++;
+        if(cursor > combatants.size()-1){
+            cursor = 0;
+        }
+        return combatants.get(cursor);
     }
 
     /**
-     * Removes a designated combatant from the List of Combatants
-     * @param combatant
+     * This method adds a combatant to the ArrayList of "Combatant"s
+     * @param combatant the Combatant to be added
      */
-    public void removeCombatant(Combatant combatant){
-        try {
-            combatants.remove(combatant);
-        } catch(NullPointerException e){
-            new errorWindow().errorWindow("No Combatant Was Selected to be Removed");
-        }
+    public void addCombatant(Combatant combatant){
+        combatants.add(combatant);
+        Arrays.sort(combatants.toArray());
     }
-
+<<<<<<< FrontEnd_Dev
+    
     public boolean hasCombatants(){
         return !combatants.isEmpty();
     }
@@ -39,7 +42,19 @@ public class InitiativeTracker {
         return combatants;
     }
     //Constructors------------------------------------------------------------------------------------------------------
+=======
+>>>>>>> master
 
+    /**
+     * This method removes a combatant from the ArrayList of "Combatant"s
+     * @param combatant the combatant to be removed
+     * @return If the Combatant "combatant" was removed
+     */
+    public boolean removeCombatant(Combatant combatant){
+        return combatants.remove(combatant);
+    }
+
+    //Constructors------------------------------------------------------------------------------------------------------
     /**
      * Default Constructor
      */
