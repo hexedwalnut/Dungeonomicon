@@ -47,6 +47,7 @@ public class InitiativeUI {
             refresh();
         });
 
+        gPane.add(listView,0,0);
 
         bottomBox.getChildren().add(nextTurn);
         bottomBox.getChildren().add(newCombatant);

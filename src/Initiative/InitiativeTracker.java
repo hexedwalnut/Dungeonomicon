@@ -28,9 +28,10 @@ public class InitiativeTracker {
         combatants.add(combatant);
         Arrays.sort(combatants.toArray());
     }
-<<<<<<< FrontEnd_Dev
     
     public boolean hasCombatants(){
+        if(combatants == null)
+            return false;
         return !combatants.isEmpty();
     }
 
@@ -42,8 +43,6 @@ public class InitiativeTracker {
         return combatants;
     }
     //Constructors------------------------------------------------------------------------------------------------------
-=======
->>>>>>> master
 
     /**
      * This method removes a combatant from the ArrayList of "Combatant"s
@@ -51,7 +50,14 @@ public class InitiativeTracker {
      * @return If the Combatant "combatant" was removed
      */
     public boolean removeCombatant(Combatant combatant){
-        return combatants.remove(combatant);
+        try {
+            if (combatant == null) {
+                new errorWindow().errorWindow("No Combatant Selected to be Removed");
+            }
+            return combatants.remove(combatant);
+        }catch(NullPointerException e){
+            return false;
+        }
     }
 
     //Constructors------------------------------------------------------------------------------------------------------
