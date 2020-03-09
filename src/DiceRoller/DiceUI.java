@@ -137,6 +137,7 @@ public class DiceUI {
      */
     public void diceStage(){
         Stage diceStage = new Stage();
+        diceStage.setTitle("Dice Roller");
         diceStage.setResizable(false);
         diceStage.setScene(new Scene(getDicePane()));
         diceStage.sizeToScene();
