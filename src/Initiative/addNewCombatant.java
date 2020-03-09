@@ -28,16 +28,30 @@ public class addNewCombatant {
         TextField acText = new TextField();
         acText.setPromptText("17");
         Label reqLabel = new Label("* are required fields");
+        ChoiceBox<String> npcornot = new ChoiceBox<String>(FXCollections.observableArrayList("NPC", "PC"));
+        Label npcornotLabel = new Label("NPC/PC?*");
         Button addButton = new Button("Ok");
         addButton.setOnAction(event -> {
             System.out.println("Ok button pushed");
+            try{
+                if(npcornot.getSelectionModel().getSelectedItem().equals("NPC")){
+                    Combatant newCombatant = new NonPlayerCharacter(Integer.parseInt(initText.getText()),
+                            nameText.getText(),Integer.parseInt(healthText.getText()),
+                            Integer.parseInt(acText.getText()));
+                    UI.getInitiativeTracker().addCombatant(newCombatant);
+                } else {
+                    Combatant newCombatant = new PlayerCharacter(Integer.parseInt(initText.getText()),
+                            nameText.getText());
+                    UI.getInitiativeTracker().addCombatant(newCombatant);
+                }
+            }catch(NumberFormatException nf){
+                new errorWindow().errorWindow("A number could not be formatted correctly \n Please try again");
+            }
             UI.refresh();
             newStage.close();
         });
         Button cancelButton = new Button("Cancel");
         cancelButton.setOnAction(event -> newStage.close());
-        ChoiceBox<String> npcornot = new ChoiceBox<String>(FXCollections.observableArrayList("NPC", "PC"));
-        Label npcornotLabel = new Label("NPC/PC?*");
 
         gridPane.add(nameLabel, 0,0);
         gridPane.add(nameText, 1, 0);

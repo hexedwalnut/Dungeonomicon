@@ -64,6 +64,14 @@ public class InitiativeUI {
         return borderPane;
     }
 
+    /**
+     * Gets initiativeTracker
+     * @return initiativeTracker
+     */
+    public InitiativeTracker getInitiativeTracker() {
+        return initiativeTracker;
+    }
+
     public void refresh(){
 
         if(initiativeTracker.hasCombatants()){

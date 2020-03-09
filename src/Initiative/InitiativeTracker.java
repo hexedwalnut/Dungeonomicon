@@ -65,7 +65,7 @@ public class InitiativeTracker {
      * Default Constructor
      */
     public InitiativeTracker(){
-        this.combatants = null;
+        this.combatants = new ArrayList<Combatant>();
     }
 
     /**
