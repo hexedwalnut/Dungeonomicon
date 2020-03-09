@@ -28,6 +28,22 @@ public class InitiativeTracker {
         combatants.add(combatant);
         Arrays.sort(combatants.toArray());
     }
+<<<<<<< FrontEnd_Dev
+    
+    public boolean hasCombatants(){
+        return !combatants.isEmpty();
+    }
+
+    /**
+     * Returns the combatants
+     * @return combatants
+     */
+    public ArrayList<Combatant> getCombatants(){
+        return combatants;
+    }
+    //Constructors------------------------------------------------------------------------------------------------------
+=======
+>>>>>>> master
 
     /**
      * This method removes a combatant from the ArrayList of "Combatant"s
