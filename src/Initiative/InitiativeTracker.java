@@ -14,6 +14,30 @@ public class InitiativeTracker {
     public void nextTurn(){
         //TODO
     }
+
+    /**
+     * Removes a designated combatant from the List of Combatants
+     * @param combatant
+     */
+    public void removeCombatant(Combatant combatant){
+        try {
+            combatants.remove(combatant);
+        } catch(NullPointerException e){
+            new errorWindow().errorWindow("No Combatant Was Selected to be Removed");
+        }
+    }
+
+    public boolean hasCombatants(){
+        return !combatants.isEmpty();
+    }
+
+    /**
+     * Returns the combatants
+     * @return combatants
+     */
+    public ArrayList<Combatant> getCombatants(){
+        return combatants;
+    }
     //Constructors------------------------------------------------------------------------------------------------------
 
     /**

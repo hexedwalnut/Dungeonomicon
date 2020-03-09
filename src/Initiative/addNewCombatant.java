@@ -1,15 +1,15 @@
 package Initiative;
 
+import javafx.collections.FXCollections;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class addNewCombatant {
 
     private Stage newStage;
+    private InitiativeUI UI;
 
     public GridPane getNewCombatantPane(){
         //Declaring a bunch of stuff
@@ -31,11 +31,13 @@ public class addNewCombatant {
         Button addButton = new Button("Ok");
         addButton.setOnAction(event -> {
             System.out.println("Ok button pushed");
+            UI.refresh();
             newStage.close();
         });
         Button cancelButton = new Button("Cancel");
         cancelButton.setOnAction(event -> newStage.close());
-
+        ChoiceBox<String> npcornot = new ChoiceBox<String>(FXCollections.observableArrayList("NPC", "PC"));
+        Label npcornotLabel = new Label("NPC/PC?*");
 
         gridPane.add(nameLabel, 0,0);
         gridPane.add(nameText, 1, 0);
@@ -47,12 +49,15 @@ public class addNewCombatant {
         gridPane.add(acText,1,3);
         gridPane.add(addButton,0,5);
         gridPane.add(cancelButton,1,5);
-        gridPane.add(reqLabel,0,6,2,1);
+        gridPane.add(npcornot,1,6);
+        gridPane.add(npcornotLabel,0,6);
+        gridPane.add(reqLabel,0,7,2,1);
 
         return gridPane;
     }
 
-    public void newCombatantStage(){
+    public void newCombatantStage(InitiativeUI UI){
+        this.UI = UI;
         newStage = new Stage();
         newStage.setResizable(false);
         newStage.setScene(new Scene(getNewCombatantPane()));
