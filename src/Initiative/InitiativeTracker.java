@@ -6,7 +6,8 @@ import java.util.Arrays;
 public class InitiativeTracker {
     //Variables---------------------------------------------------------------------------------------------------------
     private ArrayList<Combatant> combatants = null; //list of combatants
-    private int cursor = 0;
+    private int cursor = -1; //must be negitive one so that when the button is hit for the first time, it pulls up
+    //the first combatant, not the second one
 
     //Methods-----------------------------------------------------------------------------------------------------------
     /**
@@ -25,8 +26,11 @@ public class InitiativeTracker {
      * @param combatant the Combatant to be added
      */
     public void addCombatant(Combatant combatant){
-        combatants.add(combatant);
-        Arrays.sort(combatants.toArray());
+        int i = 0;
+        while(i < combatants.size() && combatant.compareTo(combatants.get(i)) < 0){
+            i++;
+        }
+        combatants.add(i,combatant);
     }
 
     /**

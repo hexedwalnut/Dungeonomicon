@@ -42,7 +42,9 @@ public class InitiativeUI {
 
         //creates the buttons and adds their functionality
         Button nextTurn = new Button("Next Turn");
-        nextTurn.setOnAction(event -> System.out.println("nextTurn pushed")); //temp-Change when nextTurn implemented
+        nextTurn.setOnAction(event -> {
+            currentCombatant.setText("Current Combatant: "+ initiativeTracker.nextTurn().toString());
+        }); //temp-Change when nextTurn implemented
 
         Button newCombatant = new Button("Add New Combatant");
         newCombatant.setOnAction(event -> {
@@ -96,7 +98,7 @@ public class InitiativeUI {
 
         if(initiativeTracker.hasCombatants()){
             ObservableList<Combatant> combatants = FXCollections.observableArrayList(initiativeTracker.getCombatants());
-            listView.getItems().removeAll();
+            listView.getItems().removeAll(combatants);
             listView.getItems().addAll(combatants);
         } else{
             listView.getItems().removeAll();
