@@ -9,8 +9,16 @@ import javafx.stage.Stage;
 
 public class errorWindow {
 
+    //Variables---------------------------------------------------------------------------------------------------------
     private Stage newStage;
 
+    //Methods-----------------------------------------------------------------------------------------------------------
+
+    /**
+     * Sets-up the pane for the ErrorWindo
+     * @param error the error message
+     * @return GridPane with the error message
+     */
     public GridPane getPane(String error){
         GridPane pane = new GridPane();
         Label label = new Label("Error: "+ error);
@@ -26,6 +34,10 @@ public class errorWindow {
         return pane;
     }
 
+    /**
+     * Sets-up the scene for the ErrorWindow
+     * @param error the error Message
+     */
     public void errorWindow(String error){
         newStage = new Stage();
         newStage.setResizable(false);

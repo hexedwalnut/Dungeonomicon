@@ -28,7 +28,11 @@ public class InitiativeTracker {
         combatants.add(combatant);
         Arrays.sort(combatants.toArray());
     }
-    
+
+    /**
+     * Returns if the list contains combatants
+     * @return True if it contains combatants
+     */
     public boolean hasCombatants(){
         if(combatants == null)
             return false;
@@ -42,7 +46,6 @@ public class InitiativeTracker {
     public ArrayList<Combatant> getCombatants(){
         return combatants;
     }
-    //Constructors------------------------------------------------------------------------------------------------------
 
     /**
      * This method removes a combatant from the ArrayList of "Combatant"s
