@@ -6,7 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class addNewCombatant {
+public class AddNewCombatant {
 
     //Variables---------------------------------------------------------------------------------------------------------
     private Stage newStage;
@@ -60,11 +60,11 @@ public class addNewCombatant {
                             nameText.getText());
                     UI.getInitiativeTracker().addCombatant(newCombatant);
                 }
+                UI.refresh();
+                newStage.close();
             }catch(NumberFormatException nf){
                 new errorWindow().errorWindow("A number could not be formatted correctly \n Please try again");
             }
-            UI.refresh();
-            newStage.close();
         });
 
         //Cancel Button

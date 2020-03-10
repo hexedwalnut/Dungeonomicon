@@ -44,11 +44,19 @@ public class InitiativeUI {
         Button nextTurn = new Button("Next Turn");
         nextTurn.setOnAction(event -> {
             currentCombatant.setText("Current Combatant: "+ initiativeTracker.nextTurn().toString());
-        }); //temp-Change when nextTurn implemented
+        });
 
         Button newCombatant = new Button("Add New Combatant");
         newCombatant.setOnAction(event -> {
-            new addNewCombatant().newCombatantStage(this);
+            new AddNewCombatant().newCombatantStage(this);
+        });
+
+        Button editCombatant = new Button("Edit Combatant");
+        editCombatant.setOnAction(event -> {
+            if(listView.getSelectionModel().getSelectedItem() != null)
+                new EditCombatant().editStage(this, listView.getSelectionModel().getSelectedItem());
+            else
+                new errorWindow().errorWindow("No Combatant was Selected");
         });
 
         Button loadCombatants = new Button("Load Combatants");
@@ -72,6 +80,7 @@ public class InitiativeUI {
         bottomBox.getChildren().add(newCombatant);
         bottomBox.getChildren().add(removeCombatant);
         bottomBox.getChildren().add(loadCombatants);
+        bottomBox.getChildren().add(editCombatant);
         topBox.getChildren().add(currentCombatant);
 
         //putting boxes/list into borderPane
@@ -97,6 +106,7 @@ public class InitiativeUI {
     public void refresh(){
 
         if(initiativeTracker.hasCombatants()){
+            initiativeTracker.sortCombatants();
             ObservableList<Combatant> combatants = FXCollections.observableArrayList(initiativeTracker.getCombatants());
             listView.getItems().removeAll(combatants);
             listView.getItems().addAll(combatants);

@@ -1,5 +1,6 @@
 package Initiative;
 
+import com.sun.javafx.binding.StringFormatter;
 import javafx.scene.layout.Pane;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -19,6 +20,12 @@ public class PlayerCharacter extends Combatant {
     @Override
     public Pane getPane(){
         return null;
+    }
+
+    @Override
+    public String toString(){
+        String output = String.format("Name: %-10.30sInit:%03d", getName(),getInitiative());
+        return output;
     }
     //Constructors------------------------------------------------------------------------------------------------------
 
