@@ -47,6 +47,12 @@ public abstract class Combatant implements Comparable<Combatant> {
 
     //Methods-----------------------------------------------------------------------------------------------------------
 
+
+    @Override
+    public String toString() {
+        return name + "     " + initiative;
+    }
+
     public abstract Pane getPane();
 
     /**

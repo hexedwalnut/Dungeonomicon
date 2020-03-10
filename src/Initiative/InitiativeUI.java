@@ -43,7 +43,9 @@ public class InitiativeUI {
         Button loadCombatants = new Button("Load Combatants");
         Button removeCombatant = new Button("Remove Combatant");
         removeCombatant.setOnAction(event -> {
-            initiativeTracker.removeCombatant(listView.getSelectionModel().getSelectedItem());
+            Combatant selected = listView.getSelectionModel().getSelectedItem();
+            initiativeTracker.removeCombatant(selected);
+            listView.getItems().remove(selected);
             refresh();
         });
 
@@ -76,11 +78,11 @@ public class InitiativeUI {
 
         if(initiativeTracker.hasCombatants()){
             ObservableList<Combatant> combatants = FXCollections.observableArrayList(initiativeTracker.getCombatants());
-            listView = new ListView<>(combatants);
+            listView.getItems().removeAll(combatants);
+            listView.getItems().addAll(combatants);
         } else{
-            listView = new ListView<>();
+            listView.getItems().removeAll();
         }
-        initStage.show();
     }
 
 
