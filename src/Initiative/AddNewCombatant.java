@@ -11,6 +11,7 @@ public class AddNewCombatant {
     //Variables---------------------------------------------------------------------------------------------------------
     private Stage newStage;
     private InitiativeUI UI;
+    private Stage newCombatantStage;
 
     //Methods-----------------------------------------------------------------------------------------------------------
 
@@ -18,15 +19,13 @@ public class AddNewCombatant {
      * sets-up the pane for the stage
      * @return GridPane
      */
-    public GridPane getNewCombatantPane(){
+    public GridPane getNewNPCPane(){
         //Declaring labels
         GridPane gridPane = new GridPane();
-        Label nameLabel = new Label("Name*: ");
-        Label initLabel = new Label("Initiative*: ");
+        Label nameLabel = new Label("Name: ");
+        Label initLabel = new Label("Initiative: ");
         Label healthLabel = new Label("Health: ");
         Label acLabel = new Label("Armor Class: ");
-        Label reqLabel = new Label("* are required fields");
-        Label npcornotLabel = new Label("NPC/PC?*");
 
         //Declaring and setting phantom Text of TextFields
         TextField nameText = new TextField();
@@ -41,27 +40,16 @@ public class AddNewCombatant {
         TextField acText = new TextField();
         acText.setPromptText("17");
 
-        //Declares ChoiceBox
-        ChoiceBox<String> npcornot = new ChoiceBox<String>(FXCollections.observableArrayList("NPC", "PC"));
-        npcornot.getSelectionModel().selectFirst();
-
         //Buttons
         //Ok Button
         Button addButton = new Button("Ok");
         addButton.setOnAction(event -> {
             try{
-                if(npcornot.getSelectionModel().getSelectedItem().equals("NPC")){
-                    Combatant newCombatant = new NonPlayerCharacter(Integer.parseInt(initText.getText()),
-                            nameText.getText(),Integer.parseInt(healthText.getText()),
-                            Integer.parseInt(acText.getText()));
-                    UI.getInitiativeTracker().addCombatant(newCombatant);
-                } else {
-                    Combatant newCombatant = new PlayerCharacter(Integer.parseInt(initText.getText()),
-                            nameText.getText());
-                    UI.getInitiativeTracker().addCombatant(newCombatant);
-                }
+                Combatant newCombatant = new NonPlayerCharacter(Integer.parseInt(initText.getText()),
+                        nameText.getText(),Integer.parseInt(healthText.getText()), Integer.parseInt(acText.getText()));
+                UI.getInitiativeTracker().addCombatant(newCombatant);
                 UI.refresh();
-                newStage.close();
+                newCombatantStage.close();
             }catch(NumberFormatException nf){
                 new errorWindow().errorWindow("A number could not be formatted correctly \n Please try again");
             }
@@ -69,7 +57,7 @@ public class AddNewCombatant {
 
         //Cancel Button
         Button cancelButton = new Button("Cancel");
-        cancelButton.setOnAction(event -> newStage.close());
+        cancelButton.setOnAction(event -> newCombatantStage.close());
 
         //adds everything to the gridPane
         gridPane.add(nameLabel, 0,0);
@@ -80,13 +68,94 @@ public class AddNewCombatant {
         gridPane.add(healthText,1,2);
         gridPane.add(acLabel,0,3);
         gridPane.add(acText,1,3);
-        gridPane.add(npcornot,1,5);
-        gridPane.add(npcornotLabel,0,5);
         gridPane.add(addButton,0,6);
         gridPane.add(cancelButton,1,6);
-        gridPane.add(reqLabel,0,7,2,1);
 
         return gridPane;
+    }
+
+    /**
+     * sets-up the pane for the stage
+     * @return GridPane
+     */
+    public GridPane getNewPCPane(){
+        //Declaring labels
+        GridPane gridPane = new GridPane();
+        Label nameLabel = new Label("Name: ");
+        Label initLabel = new Label("Initiative: ");
+
+        //Declaring and setting phantom Text of TextFields
+        TextField nameText = new TextField();
+        nameText.setPromptText("Goblin 1/Twitch");
+
+        TextField initText = new TextField();
+        initText.setPromptText("17");
+
+        //Buttons
+        //Ok Button
+        Button addButton = new Button("Ok");
+        addButton.setOnAction(event -> {
+            try{
+                Combatant newCombatant = new PlayerCharacter(Integer.parseInt(initText.getText()), nameText.getText());
+                UI.getInitiativeTracker().addCombatant(newCombatant);
+                UI.refresh();
+                newCombatantStage.close();
+            }catch(NumberFormatException nf){
+                new errorWindow().errorWindow("A number could not be formatted correctly \n Please try again");
+            }
+        });
+
+        //Cancel Button
+        Button cancelButton = new Button("Cancel");
+        cancelButton.setOnAction(event -> newCombatantStage.close());
+
+        //adds everything to the gridPane
+        gridPane.add(nameLabel, 0,0);
+        gridPane.add(nameText, 1, 0);
+        gridPane.add(initLabel,0, 1);
+        gridPane.add(initText, 1,1);
+        gridPane.add(addButton,0,2);
+        gridPane.add(cancelButton,1,2);
+
+        return gridPane;
+    }
+
+    public GridPane getNewCombatantPane(){
+        GridPane pane = new GridPane();
+
+        Label label = new Label("NPC or PC?");
+
+        Button pcButton = new Button("PC");
+        pcButton.setOnAction(event -> {
+            newCombatantStage = new Stage();
+            newCombatantStage.setScene(new Scene(getNewPCPane()));
+            newCombatantStage.setTitle("Create a New PC");
+            newCombatantStage.setResizable(false);
+            newCombatantStage.sizeToScene();
+            newCombatantStage.show();
+            newStage.close();
+        });
+
+        Button npcButton = new Button("NPC");
+        npcButton.setOnAction(event -> {
+            newCombatantStage = new Stage();
+            newCombatantStage.setScene(new Scene(getNewNPCPane()));
+            newCombatantStage.setTitle("Create a New NPC");
+            newCombatantStage.setResizable(false);
+            newCombatantStage.sizeToScene();
+            newCombatantStage.show();
+            newStage.close();
+        });
+
+        Button cancelButton = new Button("Cancel");
+        cancelButton.setOnAction(event -> newStage.close());
+
+        pane.add(label, 0,0,2,1);
+        pane.add(npcButton,0,1);
+        pane.add(pcButton,1,1);
+        pane.add(cancelButton,0,2,2,1);
+
+        return pane;
     }
 
     /**

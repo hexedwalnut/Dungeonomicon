@@ -49,8 +49,9 @@ public abstract class Combatant implements Comparable<Combatant> {
 
 
     @Override
-    public String toString() {
-        return name + "     " + initiative;
+    public String toString(){
+        String output = String.format("Name: %-10.30sInit:%03d", getName(),getInitiative());
+        return output;
     }
 
     public abstract Pane getPane();
