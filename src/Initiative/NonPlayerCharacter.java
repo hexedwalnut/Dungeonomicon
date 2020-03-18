@@ -62,6 +62,12 @@ public class NonPlayerCharacter extends Combatant {
         this.hitPoints+=increment;
     }
 
+    public String toString(){
+        String output = super.toString();
+        output += String.format("HP:%03d AC:%03d",getHitPoints(), getArmorClass());
+        return output;
+    }
+
     /**
      * Fills in the NPC data from an XML node
      * @param node The node to retrieve data from

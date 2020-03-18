@@ -50,7 +50,7 @@ public abstract class Combatant implements Comparable<Combatant> {
 
     @Override
     public String toString(){
-        String output = String.format("Name: %-10.30sInit:%03d", getName(),getInitiative());
+        String output = String.format("Init:%03d Name: %-10.30s",getInitiative(), getName());
         return output;
     }
 
