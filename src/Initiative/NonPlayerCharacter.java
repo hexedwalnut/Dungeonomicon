@@ -62,6 +62,7 @@ public class NonPlayerCharacter extends Combatant {
         this.hitPoints+=increment;
     }
 
+    @Override
     public String toString(){
         String output = super.toString();
         output += String.format("HP:%03d AC:%03d",getHitPoints(), getArmorClass());

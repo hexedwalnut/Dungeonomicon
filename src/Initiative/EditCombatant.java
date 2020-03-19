@@ -54,7 +54,7 @@ public class EditCombatant {
                         combatant.setInitiative(Integer.parseInt(initText.getText()));
                     }
                 }
-                if (!healthText.getText().equals("") && combatant.getClass().equals(new NonPlayerCharacter())) {
+                if (!healthText.getText().equals("") && combatant instanceof NonPlayerCharacter) {
                     if (healthText.getText().charAt(0) == '+'){
                         ((NonPlayerCharacter)combatant).setHitPoints(((NonPlayerCharacter)combatant).getHitPoints()
                                 + Integer.parseInt(healthText.getText().substring(1)));
@@ -65,7 +65,7 @@ public class EditCombatant {
                         ((NonPlayerCharacter)combatant).setHitPoints(Integer.parseInt(healthText.getText()));
                     }
                 }
-                if (!acText.getText().equals("") && combatant.getClass().equals(new NonPlayerCharacter())) {
+                if (!acText.getText().equals("") && combatant instanceof NonPlayerCharacter) {
                     if (acText.getText().charAt(0) == '+'){
                         ((NonPlayerCharacter)combatant).setArmorClass(((NonPlayerCharacter)combatant).getArmorClass()
                                 + Integer.parseInt(acText.getText().substring(1)));

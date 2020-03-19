@@ -1,8 +1,6 @@
 package Initiative;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class InitiativeTracker {
     //Variables---------------------------------------------------------------------------------------------------------
@@ -51,7 +49,7 @@ public class InitiativeTracker {
         //if the lower bound is larger or equal to the upper bound then the array is sorted
         if(p < q) {
             //finds sorts based on larger or smaller than a value
-            int r = partion(A,p,q);
+            int r = partition(A,p,q);
             //then recursively calls itself to sort the new sections
             QuickSort(A,p,r-1);
             QuickSort(A,r+1,q);
@@ -65,7 +63,7 @@ public class InitiativeTracker {
      * @param q the lower bound
      * @return the point where the numbers are now larger or smaller exclusivly on respective sides
      */
-    public int partion(ArrayList<Combatant> A,int p,int q) {
+    public int partition(ArrayList<Combatant> A, int p, int q) {
         //selects the pivot then gets the value from that point
         int pivot = q;
         Combatant pivVal = A.get(pivot);
