@@ -1,5 +1,6 @@
 package Persistance;
 
+import javax.tools.JavaCompiler;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -77,8 +78,9 @@ public class FileParser {
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(file);
             transformer.transform(source, result);
+            result.getWriter().close();
         }
-        catch (TransformerException e) {
+        catch (TransformerException | IOException e) {
             e.printStackTrace();
         }
     }

@@ -89,7 +89,7 @@ public class NonPlayerCharacter extends Combatant {
                     Element effect = (Element) statusEffectNodes.item(i);
                     this.addStatusEffect(allStatusEffects.getEffectByName(effect.getAttribute("name")));
                 } else {
-                    System.out.println("YEET! Wasn't an Element at NPC 134");
+                    throw new RuntimeException("YEET! Wasn't an Element at NPC 134");
                 }
             }
 

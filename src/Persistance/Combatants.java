@@ -6,6 +6,7 @@ import Initiative.PlayerCharacter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,7 @@ public class Combatants {
         doc = parser.ParseFile();
 
         NodeList xmlCombatants = doc.getElementsByTagName("Combatant");
+        System.out.println(xmlCombatants.item(0).toString());
         for(int i = 0; i < xmlCombatants.getLength(); i++) {
             Node xmlCombatant = xmlCombatants.item(i);
             if(xmlCombatant.getAttributes().getNamedItem("type").getNodeValue().equals("PlayerCharacter")) {
@@ -42,7 +44,20 @@ public class Combatants {
         }
     }
 
-    private void Save() {
+    public void AddCombatant(Combatant combatant) {
+        combatants.add(combatant);
+    }
+
+    public void Save() {
+        for(Combatant combatant : combatants) {
+            if (combatant instanceof NonPlayerCharacter) {
+                combatant.toXMLElement(doc);
+            } else if (combatant instanceof PlayerCharacter) {
+                throw new NotImplementedException();
+            } else {
+                throw new NotImplementedException();
+            }
+        }
         parser.SaveToFile(doc);
     }
 }
