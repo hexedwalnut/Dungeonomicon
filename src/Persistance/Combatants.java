@@ -41,4 +41,8 @@ public class Combatants {
             }
         }
     }
+
+    private void Save() {
+        parser.SaveToFile(doc);
+    }
 }
