@@ -78,9 +78,8 @@ public class FileParser {
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(file);
             transformer.transform(source, result);
-            result.getWriter().close();
         }
-        catch (TransformerException | IOException e) {
+        catch (TransformerException e) {
             e.printStackTrace();
         }
     }
