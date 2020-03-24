@@ -43,7 +43,12 @@ public class InitiativeUI {
         //creates the buttons and adds their functionality
         Button nextTurn = new Button("Next Turn");
         nextTurn.setOnAction(event -> {
-            currentCombatant.setText("Current Combatant: "+ initiativeTracker.nextTurn().toString());
+            try{
+                currentCombatant.setText("Current Combatant: "+ initiativeTracker.nextTurn().toString());
+            }catch(IndexOutOfBoundsException e){
+                new errorWindow().errorWindow("No Combatants to have a turn!\n Please add some Combatants and try " +
+                        "again.");
+            }
         });
 
         Button newCombatant = new Button("Add New Combatant");
