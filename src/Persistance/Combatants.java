@@ -10,6 +10,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 
+
 public class Combatants {
     private static String fileLocation = "/Dungeonomicon/Combatants.xml";
     private static ArrayList<Combatant> combatants = new ArrayList<>();
@@ -45,6 +46,7 @@ public class Combatants {
                 combatants.add(nonPlayerCharacter);
             }
         }
+        initialized = true;
     }
 
     public void AddCombatant(Combatant combatant) {
@@ -52,7 +54,7 @@ public class Combatants {
     }
 
     public void Save() {
-        for(int i = 0; doc.getDocumentElement().hasChildNodes(); ) {
+        while( doc.getDocumentElement().hasChildNodes() ) {
             doc.getDocumentElement().removeChild(doc.getDocumentElement().getFirstChild());
         }
         for(Combatant combatant : combatants) {
