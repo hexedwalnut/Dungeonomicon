@@ -16,7 +16,9 @@ public class SettingsStorage {
     private static FileParser parser = new FileParser(fileLocation);
     private static boolean sumRollsEnabled = false;
 
-    public static void Initialize() {parser.ParseFile();}
+    public static void Initialize() {
+        parser.ParseFile();
+    }
 
     public static void Load() {
         parser.ParseFile();

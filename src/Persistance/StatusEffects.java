@@ -12,6 +12,9 @@ import java.util.ArrayList;
  * Date Last Modified: 11/8/2019
  * @author Daniel Masker
  */
+
+@SuppressWarnings("unused")
+
 public class StatusEffects {
     private static String fileLocation = "/Dungeonomicon/StatusEffects.xml";
     private static ArrayList<StatusEffect> effects = new ArrayList<>();
@@ -43,6 +46,7 @@ public class StatusEffects {
             StatusEffect effect = new StatusEffect(name, desc);
             effects.add(effect);
         }
+        initialized = true;
     }
 
     /**
