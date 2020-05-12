@@ -6,6 +6,8 @@ import org.w3c.dom.*;
 
 import java.util.ArrayList;
 
+@SuppressWarnings({"unused", "WeakerAccess"})
+
 public class NonPlayerCharacter extends Combatant {
     //Variables---------------------------------------------------------------------------------------------------------
     private int hitPoints = 0; //the hit point total of a NonPlayerCharacter

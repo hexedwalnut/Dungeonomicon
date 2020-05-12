@@ -47,6 +47,11 @@ public class PlayerCharacter extends Combatant {
         super(initiative, statusEffects, name);
     }
 
+    /**
+     * Generates an XML Element from the PlayerCharacter using the given document
+     * @param doc The document used to create the XML Element
+     * @return An elemental version of the player
+     */
     @Override
     public Element toXMLElement(Document doc) {
 
@@ -75,6 +80,10 @@ public class PlayerCharacter extends Combatant {
         return combatant;
     }
 
+    /**
+     * Reinitialize values using a node
+     * @param node the node to retrieve values from
+     */
     @Override
     public void generateFromXMLNode(Node node) {
         if (node.getNodeType() == Node.ELEMENT_NODE) {
