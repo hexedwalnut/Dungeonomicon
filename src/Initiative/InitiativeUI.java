@@ -1,5 +1,6 @@
 package Initiative;
 
+import Persistance.SettingsStorage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -93,6 +94,8 @@ public class InitiativeUI {
         borderPane.setLeft(leftBox);
         borderPane.setTop(topBox);
         borderPane.setBottom(bottomBox);
+
+        borderPane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
 
         return borderPane;
     }

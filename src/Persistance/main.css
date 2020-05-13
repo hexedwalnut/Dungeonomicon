@@ -1,0 +1,42 @@
+
+.root {
+    -fx-background-color: #23272a;
+}
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-family: "Comic Sans MS";
+}
+
+.button {
+    -fx-background-color: #23272a;
+    -fx-text-fill: white;
+}
+
+.button:hover {
+    -fx-background-color: #282b30;
+}
+
+.button:focused {
+    -fx-background-color: #424549;
+}
+
+.text-field {
+    -fx-background-color: #23272a;
+    -fx-text-fill: #99aab5;
+}
+
+.list-view {
+    -fx-background-color: #23272a;
+    -fx-text-fill: #99aab5
+}
+
+.list-view .list-cell {
+    -fx-background-color: #23272a;
+    -fx-text-fill: #99aab5;
+}
+
+.list-view .list-cell:focused {
+    -fx-background-color: #424549;
+    -fx-text-fill: #99aab5;
+}

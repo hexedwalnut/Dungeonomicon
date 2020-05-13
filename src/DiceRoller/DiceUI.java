@@ -1,5 +1,6 @@
 package DiceRoller;
 
+import Persistance.SettingsStorage;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -134,6 +135,8 @@ public class DiceUI {
         pane.add(modifier, 2, 6);
         pane.add(clear, 2, 7);
         pane.add(custRoll, 0, 7, 2, 1);
+
+        pane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
 
         return pane;
     }

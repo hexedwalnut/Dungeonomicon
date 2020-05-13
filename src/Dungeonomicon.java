@@ -1,5 +1,6 @@
 import DiceRoller.DiceUI;
 import Initiative.InitiativeUI;
+import Persistance.SettingsStorage;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -8,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import javax.security.auth.login.LoginContext;
 
 /**
  * Main JavaFX application launcher for the dungeonomicon table top role playing game assistance software.
@@ -68,6 +71,8 @@ public class Dungeonomicon extends Application {
         pane.setPadding(new Insets(10, 10, 10, 10));
         pane.spacingProperty().set(10);
         pane.getChildren().addAll(banner, settings, diceRoller, initTracker);
+
+        pane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
 
         return new Scene(pane);
     }
