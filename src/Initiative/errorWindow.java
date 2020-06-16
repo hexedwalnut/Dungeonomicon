@@ -1,5 +1,6 @@
 package Initiative;
 
+import Persistance.SettingsStorage;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -29,7 +30,9 @@ public class errorWindow {
         pane.add(label,0,0);
         pane.add(okButton,0,1);
 
-        GridPane.setHalignment(okButton, HPos.CENTER);
+        pane.setHalignment(okButton, HPos.CENTER);
+
+        pane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
 
         return pane;
     }

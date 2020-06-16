@@ -1,5 +1,6 @@
 package Initiative;
 
+import Persistance.SettingsStorage;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -71,6 +72,8 @@ public class AddNewCombatant {
         gridPane.add(addButton,0,6);
         gridPane.add(cancelButton,1,6);
 
+        gridPane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
+
         return gridPane;
     }
 
@@ -117,6 +120,8 @@ public class AddNewCombatant {
         gridPane.add(addButton,0,2);
         gridPane.add(cancelButton,1,2);
 
+        gridPane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
+
         return gridPane;
     }
 
@@ -154,6 +159,8 @@ public class AddNewCombatant {
         pane.add(npcButton,0,1);
         pane.add(pcButton,1,1);
         pane.add(cancelButton,0,2,2,1);
+
+        pane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
 
         return pane;
     }

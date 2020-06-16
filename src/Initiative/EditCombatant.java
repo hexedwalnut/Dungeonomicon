@@ -1,5 +1,6 @@
 package Initiative;
 
+import Persistance.SettingsStorage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -94,6 +95,8 @@ public class EditCombatant {
         pane.add(reqLabel,0,4,2,1);
         pane.add(okButton,0,5);
         pane.add(cancelButton,1,5);
+
+        pane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
 
         return pane;
     }
