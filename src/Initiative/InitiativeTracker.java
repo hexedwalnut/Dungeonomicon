@@ -126,6 +126,14 @@ public class InitiativeTracker {
         }
     }
 
+    /**
+     * Returns the cursor
+     * @return Cursor value
+     */
+    public int getCursor(){
+        return cursor;
+    }
+
     //Constructors------------------------------------------------------------------------------------------------------
     /**
      * Default Constructor

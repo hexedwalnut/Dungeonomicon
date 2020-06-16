@@ -116,7 +116,7 @@ public class InitiativeUI {
         if(initiativeTracker.hasCombatants()){
             initiativeTracker.sortCombatants();
             ObservableList<Combatant> combatants = FXCollections.observableArrayList(initiativeTracker.getCombatants());
-            listView.getItems().removeAll(combatants);
+            listView.getItems().removeAll();
             listView.getItems().addAll(combatants);
         } else{
             listView.getItems().removeAll();
