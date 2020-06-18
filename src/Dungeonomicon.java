@@ -1,5 +1,6 @@
 import DiceRoller.DiceUI;
 import Initiative.InitiativeUI;
+import Initiative.InitiativeUI2;
 import Persistance.SettingsStorage;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -68,9 +69,13 @@ public class Dungeonomicon extends Application {
         initTracker.maxWidthProperty().bind(pane.widthProperty());
         initTracker.setOnAction(event -> new InitiativeUI().initStage());
 
+        Button initTracker2 = new Button("Initiative Tracker 2.0-In Dev");
+        initTracker.maxWidthProperty().bind(pane.widthProperty());
+        initTracker2.setOnAction(event -> new InitiativeUI2().initStage());
+
         pane.setPadding(new Insets(10, 10, 10, 10));
         pane.spacingProperty().set(10);
-        pane.getChildren().addAll(banner, settings, diceRoller, initTracker);
+        pane.getChildren().addAll(banner, settings, diceRoller, initTracker, initTracker2);
 
         pane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
 
