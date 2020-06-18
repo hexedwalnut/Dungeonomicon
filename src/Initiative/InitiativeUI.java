@@ -4,29 +4,30 @@ import Persistance.SettingsStorage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
-
+/**
+ * Creates the UI framework for the initiative tracker
+ *
+ * @author Matt
+ * @author Thomas
+ */
 public class InitiativeUI {
 
-    //variables---------------------------------------------------------------------------------------------------------
-    private Stage initStage;
     private ListView<Combatant> listView;
     private InitiativeTracker initiativeTracker;
+    private Stage newCombatantStage;
 
     //methods-----------------------------------------------------------------------------------------------------------
 
     /**
      * Generates the Pane for the stage
-     * @return BorderPane conatining everything for the tracker
+     * @return BorderPane containing everything for the tracker
      */
     public BorderPane getInitPane(){
         //Declaring a bunch of stuff
@@ -35,11 +36,11 @@ public class InitiativeUI {
         HBox bottomBox = new HBox();
         VBox leftBox = new VBox();
         Label currentCombatant = new Label("Current Combatant: ");
-        GridPane gPane = new GridPane();
+
 
         //sets up the tracker
         initiativeTracker = new InitiativeTracker();
-        listView = new ListView<Combatant>();
+        listView = new ListView<>();
 
         //creates the buttons and adds their functionality
         Button nextTurn = new Button("Next Turn");
@@ -52,10 +53,31 @@ public class InitiativeUI {
             }
         });
 
-        Button newCombatant = new Button("Add New Combatant");
-        newCombatant.setOnAction(event -> {
-            new AddNewCombatant().newCombatantStage(this);
+        MenuBar menuBarNewCombatant = new MenuBar();
+        Menu menuNewCombatant = new Menu("New Combatant");
+
+        MenuItem itemNewCombatantNPC = new MenuItem("NPC");
+        itemNewCombatantNPC.setOnAction(event -> {
+            newCombatantStage = new Stage();
+            newCombatantStage.setScene(new Scene(getNewNPCPane()));
+            newCombatantStage.setTitle("Create a New NPC");
+            newCombatantStage.setResizable(false);
+            newCombatantStage.sizeToScene();
+            newCombatantStage.show();
         });
+
+        MenuItem itemNewCombatantPC = new MenuItem("PC");
+        itemNewCombatantPC.setOnAction(event -> {
+            newCombatantStage = new Stage();
+            newCombatantStage.setScene(new Scene(getNewPCPane()));
+            newCombatantStage.setTitle("Create a New PC");
+            newCombatantStage.setResizable(false);
+            newCombatantStage.sizeToScene();
+            newCombatantStage.show();
+        });
+
+        menuNewCombatant.getItems().addAll(itemNewCombatantNPC, itemNewCombatantPC);
+        menuBarNewCombatant.getMenus().add(menuNewCombatant);
 
         Button editCombatant = new Button("Edit Combatant");
         editCombatant.setOnAction(event -> {
@@ -83,7 +105,7 @@ public class InitiativeUI {
          */
 
         bottomBox.getChildren().add(nextTurn);
-        bottomBox.getChildren().add(newCombatant);
+        bottomBox.getChildren().add(menuBarNewCombatant);
         bottomBox.getChildren().add(removeCombatant);
         bottomBox.getChildren().add(loadCombatants);
         bottomBox.getChildren().add(editCombatant);
@@ -98,6 +120,115 @@ public class InitiativeUI {
         borderPane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
 
         return borderPane;
+    }
+
+    /**
+     * sets-up the pane for the stage
+     * @return GridPane
+     */
+    public GridPane getNewPCPane(){
+        //Declaring labels
+        GridPane gridPane = new GridPane();
+        Label nameLabel = new Label("Name: ");
+        Label initLabel = new Label("Initiative: ");
+
+        //Declaring and setting phantom Text of TextFields
+        TextField nameText = new TextField();
+        nameText.setPromptText("Goblin 1/Twitch");
+
+        TextField initText = new TextField();
+        initText.setPromptText("17");
+
+        //Buttons
+        //Ok Button
+        Button addButton = new Button("Ok");
+        addButton.setOnAction(event -> {
+            try{
+                Combatant newCombatant = new PlayerCharacter(Integer.parseInt(initText.getText()), nameText.getText());
+                getInitiativeTracker().addCombatant(newCombatant);
+                refresh();
+                newCombatantStage.close();
+            }catch(NumberFormatException nf){
+                new errorWindow().errorWindow("A number could not be formatted correctly \n Please try again");
+            }
+        });
+
+        //Cancel Button
+        Button cancelButton = new Button("Cancel");
+        cancelButton.setOnAction(event -> newCombatantStage.close());
+
+        //adds everything to the gridPane
+        gridPane.add(nameLabel, 0,0);
+        gridPane.add(nameText, 1, 0);
+        gridPane.add(initLabel,0, 1);
+        gridPane.add(initText, 1,1);
+        gridPane.add(addButton,0,2);
+        gridPane.add(cancelButton,1,2);
+
+        gridPane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
+
+        return gridPane;
+    }
+
+    /**
+     * sets-up the pane for the stage
+     * @return GridPane
+     */
+    public GridPane getNewNPCPane(){
+        //Declaring labels
+        GridPane gridPane = new GridPane();
+        Label nameLabel = new Label("Name: ");
+        Label initLabel = new Label("Initiative: ");
+        Label healthLabel = new Label("Health: ");
+        Label acLabel = new Label("Armor Class: ");
+
+        //Declaring and setting phantom Text of TextFields
+        TextField nameText = new TextField();
+        nameText.setPromptText("Goblin 1/Twitch");
+
+        TextField initText = new TextField();
+        initText.setPromptText("17");
+
+        TextField healthText = new TextField();
+        healthText.setPromptText("25");
+
+        TextField acText = new TextField();
+        acText.setPromptText("17");
+
+        //Buttons
+        //Ok Button
+        Button addButton = new Button("Ok");
+        addButton.setOnAction(event -> {
+            try{
+                Combatant newCombatant = new NonPlayerCharacter(Integer.parseInt(initText.getText()),
+                        nameText.getText(),Integer.parseInt(healthText.getText()), Integer.parseInt(acText.getText()));
+                getInitiativeTracker().addCombatant(newCombatant);
+                refresh();
+                newCombatantStage.close();
+            }catch(NumberFormatException nf){
+                new errorWindow().errorWindow("A number could not be formatted correctly \n Please try again");
+            }
+        });
+
+        //Cancel Button
+        Button cancelButton = new Button("Cancel");
+        cancelButton.setOnAction(event -> newCombatantStage.close());
+
+        //adds everything to the gridPane
+        gridPane.add(nameLabel, 0,0);
+        gridPane.add(nameText, 1, 0);
+        gridPane.add(initLabel,0, 1);
+        gridPane.add(initText, 1,1);
+        gridPane.add(healthLabel, 0,2);
+        gridPane.add(healthText,1,2);
+        gridPane.add(acLabel,0,3);
+        gridPane.add(acText,1,3);
+        gridPane.add(addButton,0,6);
+        gridPane.add(cancelButton,1,6);
+
+        gridPane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
+
+        return gridPane;
     }
 
     /**
@@ -127,7 +258,8 @@ public class InitiativeUI {
      * Generates the scene to be displayed
      */
     public void initStage(){
-        initStage = new Stage();
+        //variables---------------------------------------------------------------------------------------------------------
+        Stage initStage = new Stage();
         initStage.setResizable(true);
         initStage.setScene(new Scene(getInitPane()));
         initStage.sizeToScene();

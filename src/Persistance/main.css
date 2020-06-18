@@ -40,3 +40,35 @@
     -fx-background-color: #424549;
     -fx-text-fill: #99aab5;
 }
+
+.menu-bar {
+    -fx-background-color: #23272a;
+    -fx-text-fill: white;
+}
+
+.menu {
+    -fx-background-color: #23272a;
+    -fx-text-fill: white;
+}
+
+.menu:showing {
+    -fx-background-color: #424549;
+    -fx-text-fill: #99aab5;
+}
+
+.menu:hover {
+    -fx-background-color: #282b30;
+}
+
+.menu-item {
+    -fx-background-color: #23272a;
+    -fx-text-fill: white;
+}
+
+.menu-item:hover {
+    -fx-background-color: #282b30;
+}
+
+.context-menu {
+    -fx-background-color: #23272a;
+}
