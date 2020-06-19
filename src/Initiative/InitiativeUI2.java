@@ -49,10 +49,16 @@ public class InitiativeUI2 extends InitiativeUI{
         //creates the buttons and adds their functionality
         Button nextTurn = new Button("Next Turn");
         nextTurn.setOnAction(event -> {
+            for(Node node: gPane.getChildren()){
+                node.setStyle(gPane.getStyle());
+            }
             try{
                 Combatant combatant = initiativeTracker.nextTurn();
                 currentCombatant.setText("Current Combatant: "+ combatant.toString());
-                //highlight Current Combatant in grid
+                int currentCombNum = initiativeTracker.getCursor();
+                gPane.getChildren().get(currentCombNum*3).setStyle("-fx-background-color: #424549");
+                gPane.getChildren().get((currentCombNum*3)+1).setStyle("-fx-background-color: #424549");
+                gPane.getChildren().get((currentCombNum*3)+2).setStyle("-fx-background-color: #424549");
 
             }catch(IndexOutOfBoundsException e){
                 new errorWindow().errorWindow("No Combatants to have a turn!\n Please add some Combatants and try " +
@@ -242,7 +248,7 @@ public class InitiativeUI2 extends InitiativeUI{
                 combats.add(new Label(combatant.toString()));
                 Button removeButton = new Button("Remove Combatant");
                 removeButton.setOnAction(event -> {
-                    Combatant selected = combatants.get(combats.indexOf(this)-1);
+                    Combatant selected = combatants.get(combats.indexOf(this)/3);
                     initiativeTracker.removeCombatant(selected);
                     gPane.getChildren().remove(selected);
                     refresh();
@@ -250,7 +256,7 @@ public class InitiativeUI2 extends InitiativeUI{
                 combats.add(removeButton);
                 Button editCombatant = new Button("Edit Combatant");
                 editCombatant.setOnAction(event -> {
-                    new EditCombatant().editStage(this, combatants.get(combats.indexOf(this)-2));
+                    new EditCombatant().editStage(this, combatants.get(combats.indexOf(this)/3));
                 });
                 combats.add(editCombatant);
             }
