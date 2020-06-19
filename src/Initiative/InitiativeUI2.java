@@ -21,7 +21,7 @@ public class InitiativeUI2 extends InitiativeUI{
     private Stage initStage;
     private ListView<Combatant> listView;
     private InitiativeTracker initiativeTracker;
-    private ArrayList<Node> combats;
+    private ArrayList<Node> nodes;
     private GridPane gPane;
     private Stage newCombatantStage;
 
@@ -44,18 +44,23 @@ public class InitiativeUI2 extends InitiativeUI{
 
         //sets up the tracker
         initiativeTracker = new InitiativeTracker();
-        listView = new ListView<Combatant>();
 
         //creates the buttons and adds their functionality
         Button nextTurn = new Button("Next Turn");
         nextTurn.setOnAction(event -> {
+            //resets the style of every node(removes the highlight)
             for(Node node: gPane.getChildren()){
                 node.setStyle(gPane.getStyle());
             }
+            //attempts to move to a new combatant
             try{
+                //cycles the combatant
                 Combatant combatant = initiativeTracker.nextTurn();
+                //sets the upper label to show the details of the current combatant
                 currentCombatant.setText("Current Combatant: "+ combatant.toString());
+                //gets the current combatants position
                 int currentCombNum = initiativeTracker.getCursor();
+                //sets the highlight
                 gPane.getChildren().get(currentCombNum*3).setStyle("-fx-background-color: #424549");
                 gPane.getChildren().get((currentCombNum*3)+1).setStyle("-fx-background-color: #424549");
                 gPane.getChildren().get((currentCombNum*3)+2).setStyle("-fx-background-color: #424549");
@@ -237,37 +242,47 @@ public class InitiativeUI2 extends InitiativeUI{
      * Updates the ListView
      */
     public void refresh(){
+        //checks to see if there are any combatants to remove
         if(gPane.getChildren().size() != 0){
-            gPane.getChildren().removeAll(combats);
+            gPane.getChildren().removeAll(nodes);
         }
-        if(initiativeTracker.hasCombatants()){
+
+        //checks if there are combatants to load
+        if(initiativeTracker.hasCombatants()) {
+            //sorts the combatants
             initiativeTracker.sortCombatants();
+            //gets an observable list of combatants
             ObservableList<Combatant> combatants = FXCollections.observableArrayList(initiativeTracker.getCombatants());
-            combats = new ArrayList<Node>();
-            for (Combatant combatant: combatants) {
-                combats.add(new Label(combatant.toString()));
+            //creates an arraylist to store the nodes for the combatants
+            nodes = new ArrayList<Node>();
+            for (Combatant combatant : combatants) {
+                //creates the label that holds the combatants info
+                nodes.add(new Label(combatant.toString()));
+                //creates the remove button for the combatant
                 Button removeButton = new Button("Remove Combatant");
                 removeButton.setOnAction(event -> {
-                    Combatant selected = combatants.get(combats.indexOf(this)/3);
+                    //gets the combatant based on location in a list
+                    Combatant selected = combatants.get(nodes.indexOf(this) / 3); //this has to be division, but dont know why.
+                    //removes the combatant and updates the display
                     initiativeTracker.removeCombatant(selected);
-                    gPane.getChildren().remove(selected);
                     refresh();
                 });
-                combats.add(removeButton);
+                //adds the remove button to the list of nodes
+                nodes.add(removeButton);
+                //creates the edit button for the combatant
                 Button editCombatant = new Button("Edit Combatant");
                 editCombatant.setOnAction(event -> {
-                    new EditCombatant().editStage(this, combatants.get(combats.indexOf(this)/3));
+                    //gets the combatant and generates the editing pane
+                    new EditCombatant().editStage(this, combatants.get(nodes.indexOf(this) / 3)); //this has to be division, but dont know why.
                 });
-                combats.add(editCombatant);
+                nodes.add(editCombatant);
             }
-            for (int i = 0; i < combats.size(); i+=3) {
-                gPane.add(combats.get((i)),0,i);
-                gPane.add(combats.get((i)+1),1,i);
-                gPane.add(combats.get((i)+2),2,i);
+            //adds the nodes to the grid pane in the right order
+            for (int i = 0; i < nodes.size(); i += 3) {
+                gPane.add(nodes.get((i)), 0, i);
+                gPane.add(nodes.get((i) + 1), 1, i);
+                gPane.add(nodes.get((i) + 2), 2, i);
             }
-
-        } else{
-            listView.getItems().removeAll(combats);
         }
     }
 
