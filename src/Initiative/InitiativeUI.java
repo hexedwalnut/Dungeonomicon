@@ -3,6 +3,7 @@ package Initiative;
 import Persistance.SettingsStorage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -10,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 
 /**
  * Creates the UI framework for the initiative tracker
@@ -21,7 +23,6 @@ public class InitiativeUI {
 
     private ListView<Combatant> listView;
     private InitiativeTracker initiativeTracker;
-    private Stage newCombatantStage;
 
     //methods-----------------------------------------------------------------------------------------------------------
 
@@ -54,27 +55,14 @@ public class InitiativeUI {
         });
 
         MenuBar menuBarNewCombatant = new MenuBar();
+        menuBarNewCombatant.setPadding(new Insets(0,0,0,0));
         Menu menuNewCombatant = new Menu("New Combatant");
 
         MenuItem itemNewCombatantNPC = new MenuItem("NPC");
-        itemNewCombatantNPC.setOnAction(event -> {
-            newCombatantStage = new Stage();
-            newCombatantStage.setScene(new Scene(getNewNPCPane()));
-            newCombatantStage.setTitle("Create a New NPC");
-            newCombatantStage.setResizable(false);
-            newCombatantStage.sizeToScene();
-            newCombatantStage.show();
-        });
+        itemNewCombatantNPC.setOnAction(event -> newNPC());
 
         MenuItem itemNewCombatantPC = new MenuItem("PC");
-        itemNewCombatantPC.setOnAction(event -> {
-            newCombatantStage = new Stage();
-            newCombatantStage.setScene(new Scene(getNewPCPane()));
-            newCombatantStage.setTitle("Create a New PC");
-            newCombatantStage.setResizable(false);
-            newCombatantStage.sizeToScene();
-            newCombatantStage.show();
-        });
+        itemNewCombatantPC.setOnAction(event -> newPC());
 
         menuNewCombatant.getItems().addAll(itemNewCombatantNPC, itemNewCombatantPC);
         menuBarNewCombatant.getMenus().add(menuNewCombatant);
@@ -97,18 +85,7 @@ public class InitiativeUI {
             refresh();
         });
 
-        //sets-up the gridpane
-        /*
-        No Longer Used... wasn't working. May be used later
-        gPane.add(listView,0,0);
-        gPane.maxWidthProperty().bind(initStage.widthProperty());
-         */
-
-        bottomBox.getChildren().add(nextTurn);
-        bottomBox.getChildren().add(menuBarNewCombatant);
-        bottomBox.getChildren().add(removeCombatant);
-        bottomBox.getChildren().add(loadCombatants);
-        bottomBox.getChildren().add(editCombatant);
+        bottomBox.getChildren().addAll(nextTurn, menuBarNewCombatant, removeCombatant, loadCombatants, editCombatant);
         topBox.getChildren().add(currentCombatant);
 
         //putting boxes/list into borderPane
@@ -123,10 +100,11 @@ public class InitiativeUI {
     }
 
     /**
-     * sets-up the pane for the stage
-     * @return GridPane
+     * Creates and launches a new stage for PC addition to the initiative tracker
      */
-    public GridPane getNewPCPane(){
+    private void newPC(){
+        Stage newCombatantStage = new Stage();
+
         //Declaring labels
         GridPane gridPane = new GridPane();
         Label nameLabel = new Label("Name: ");
@@ -167,14 +145,19 @@ public class InitiativeUI {
 
         gridPane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
 
-        return gridPane;
+        newCombatantStage.setScene(new Scene(gridPane));
+        newCombatantStage.setTitle("Create a New PC");
+        newCombatantStage.setResizable(false);
+        newCombatantStage.sizeToScene();
+        newCombatantStage.show();
     }
 
     /**
-     * sets-up the pane for the stage
-     * @return GridPane
+     * Creates and launches a new stage for NPC addition to the initiative tracker
      */
-    public GridPane getNewNPCPane(){
+    private void newNPC(){
+        Stage newCombatantStage = new Stage();
+
         //Declaring labels
         GridPane gridPane = new GridPane();
         Label nameLabel = new Label("Name: ");
@@ -228,7 +211,11 @@ public class InitiativeUI {
 
         gridPane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
 
-        return gridPane;
+        newCombatantStage.setScene(new Scene(gridPane));
+        newCombatantStage.setTitle("Create a New NPC");
+        newCombatantStage.setResizable(false);
+        newCombatantStage.sizeToScene();
+        newCombatantStage.show();
     }
 
     /**
