@@ -168,15 +168,19 @@ public class InitiativeUI {
         //Declaring and setting phantom Text of TextFields
         TextField nameText = new TextField();
         nameText.setPromptText("Goblin 1/Twitch");
+        nameText.setStyle("-fx-prompt-text-fill: #FF5733"); //Use Hex Color Codes to change the color
 
         TextField initText = new TextField();
         initText.setPromptText("17");
+        initText.setStyle("-fx-prompt-text-fill: #E7D278"); //Use Hex Color Codes to change the color
 
         TextField healthText = new TextField();
         healthText.setPromptText("25");
+        healthText.setStyle("-fx-prompt-text-fill: #FF0000"); //Use Hex Color Codes to change the color
 
         TextField acText = new TextField();
         acText.setPromptText("17");
+        acText.setStyle("-fx-prompt-text-fill: #B6E778"); //Use Hex Color Codes to change the color
 
         //Buttons
         //Ok Button
