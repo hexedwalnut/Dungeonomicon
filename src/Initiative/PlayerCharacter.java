@@ -24,7 +24,7 @@ public class PlayerCharacter extends Combatant {
 
     @Override
     public String toString(){
-        return String.format("Name: %-10.30sInit:%03d", getName(),getInitiative());
+        return super.toString();
     }
     //Constructors------------------------------------------------------------------------------------------------------
 
