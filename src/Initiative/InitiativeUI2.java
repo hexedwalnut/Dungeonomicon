@@ -19,7 +19,6 @@ public class InitiativeUI2 extends InitiativeUI{
 
     //variables---------------------------------------------------------------------------------------------------------
     private Stage initStage;
-    private ListView<Combatant> listView;
     private InitiativeTracker initiativeTracker;
     private ArrayList<Node> nodes;
     private GridPane gPane;
@@ -62,8 +61,6 @@ public class InitiativeUI2 extends InitiativeUI{
                 int currentCombNum = initiativeTracker.getCursor();
                 //sets the highlight
                 gPane.getChildren().get(currentCombNum*3).setStyle("-fx-background-color: #424549");
-                gPane.getChildren().get((currentCombNum*3)+1).setStyle("-fx-background-color: #424549");
-                gPane.getChildren().get((currentCombNum*3)+2).setStyle("-fx-background-color: #424549");
 
             }catch(IndexOutOfBoundsException e){
                 new errorWindow().errorWindow("No Combatants to have a turn!\n Please add some Combatants and try " +
@@ -99,12 +96,22 @@ public class InitiativeUI2 extends InitiativeUI{
         menuBarNewCombatant.getMenus().add(menuNewCombatant);
 
 
-        Button loadCombatants = new Button("Load Combatants");
+        Button loadCombatants = new Button("Load");
+        //loadCombatants.setStyle("-fx-background-image: url('../Persistance/Upload-Folder-512.png')");
+        loadCombatants.setOnAction(event -> {
+            System.out.println("test load");
+        });
 
+        Button saveCombatants = new Button("Save");
+        //saveCombatants.setStyle("-fx-background-image: url('../Persistance/saveIcon.png')");
+        saveCombatants.setOnAction(event -> {
+            System.out.println("save load");
+        });
 
         bottomBox.getChildren().add(nextTurn);
         bottomBox.getChildren().add(menuBarNewCombatant);
         bottomBox.getChildren().add(loadCombatants);
+        bottomBox.getChildren().add(saveCombatants);
 
         topBox.getChildren().add(currentCombatant);
 
@@ -259,7 +266,7 @@ public class InitiativeUI2 extends InitiativeUI{
                 //creates the label that holds the combatants info
                 nodes.add(new Label(combatant.toString()));
                 //creates the remove button for the combatant
-                Button removeButton = new Button("Remove Combatant");
+                Button removeButton = new Button("Remove");
                 removeButton.setOnAction(event -> {
                     //gets the combatant based on location in a list
                     Combatant selected = combatants.get(nodes.indexOf(this) / 3); //this has to be division, but dont know why.
@@ -270,7 +277,7 @@ public class InitiativeUI2 extends InitiativeUI{
                 //adds the remove button to the list of nodes
                 nodes.add(removeButton);
                 //creates the edit button for the combatant
-                Button editCombatant = new Button("Edit Combatant");
+                Button editCombatant = new Button("Edit");
                 editCombatant.setOnAction(event -> {
                     //gets the combatant and generates the editing pane
                     new EditCombatant().editStage(this, combatants.get(nodes.indexOf(this) / 3)); //this has to be division, but dont know why.
