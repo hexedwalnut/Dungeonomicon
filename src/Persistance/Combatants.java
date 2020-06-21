@@ -30,7 +30,7 @@ public class Combatants {
      */
     public Combatants(String fileLocation) {
         this.fileLocation = fileLocation;
-        parser = new FileParser(fileLocation);
+        parser = new FileParser(fileLocation, false);
     }
 
     /**
@@ -113,7 +113,7 @@ public class Combatants {
      */
     public void SetFileLocation(String fileLocation) {
         this.fileLocation = fileLocation;
-        parser = new FileParser(fileLocation);
+        parser = new FileParser(fileLocation, false);
     }
 
     /**
