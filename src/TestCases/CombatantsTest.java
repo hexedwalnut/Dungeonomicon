@@ -13,7 +13,7 @@ public class CombatantsTest {
 
     @Test
     public void GeneratedXMLTest() {
-        Combatants combatants = new Combatants("C:\\Users\\Madly\\AppData\\Roaming\\Dungeonomicon\\test.xml");
+        Combatants combatants = new Combatants("./XMLFiles/Combatants.xml");
         NonPlayerCharacter nonPlayerCharacter = new NonPlayerCharacter
         (10, new ArrayList<StatusEffect>(), 8, 12, "Jimmy");
         combatants.AddCombatant(nonPlayerCharacter);

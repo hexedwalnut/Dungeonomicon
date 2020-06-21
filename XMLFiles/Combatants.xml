@@ -1,2 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><doc>
-</doc>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Combatants><Combatant initiative="10" name="Jimmy" type="NonPlayerCharacter"><HitPoints>8</HitPoints><ArmorClass>12</ArmorClass></Combatant><Combatant initiative="17" name="George" type="PlayerCharacter"/></Combatants>
