@@ -1,5 +1,6 @@
 package Initiative;
 
+import Persistance.Combatants;
 import Persistance.SettingsStorage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,8 +11,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -23,6 +26,7 @@ public class InitiativeUI2 extends InitiativeUI{
     private ArrayList<Node> nodes;
     private GridPane gPane;
     private Stage newCombatantStage;
+    private Stage saveload;
 
     //methods-----------------------------------------------------------------------------------------------------------
 
@@ -99,13 +103,35 @@ public class InitiativeUI2 extends InitiativeUI{
         Button loadCombatants = new Button("Load");
         //loadCombatants.setStyle("-fx-background-image: url('../Persistance/Upload-Folder-512.png')");
         loadCombatants.setOnAction(event -> {
-            System.out.println("test load");
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Load Combatants");
+            fileChooser.setInitialDirectory(new File("XMLFiles"));
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("XML", "*.xml"),
+                    new FileChooser.ExtensionFilter("All Images", "*.*")
+            );
+            File file = fileChooser.showOpenDialog(saveload);
+            Combatants combatants = new Combatants(file.getPath());
+            for (Combatant comb: combatants.getCombatants()) {
+                initiativeTracker.addCombatant(comb);
+            }
         });
 
         Button saveCombatants = new Button("Save");
         //saveCombatants.setStyle("-fx-background-image: url('../Persistance/saveIcon.png')");
         saveCombatants.setOnAction(event -> {
-            System.out.println("save load");
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save Combatants");
+            fileChooser.setInitialDirectory(new File("XMLFiles"));
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("XML", "*.xml")
+            );
+            File file = fileChooser.showSaveDialog(saveload);
+            if(file != null) {
+                Combatants combatants = new Combatants(file.getPath());
+                combatants.AddCombatants(initiativeTracker.getCombatants());
+                combatants.Save();
+            }
         });
 
         bottomBox.getChildren().add(nextTurn);
@@ -236,6 +262,8 @@ public class InitiativeUI2 extends InitiativeUI{
 
         return gridPane;
     }
+
+
 
     /**
      * Gets initiativeTracker
