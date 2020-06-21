@@ -31,6 +31,7 @@ public abstract class Combatant implements Comparable<Combatant> {
     public Combatant(int initiative, String name){
         this.initiative = initiative;
         this.name = name;
+        this.statusEffects = new ArrayList<>();
     }
 
     /**
