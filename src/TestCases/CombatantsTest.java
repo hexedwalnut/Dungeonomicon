@@ -2,6 +2,7 @@ package TestCases;
 
 import Initiative.Combatant;
 import Initiative.NonPlayerCharacter;
+import Initiative.PlayerCharacter;
 import Initiative.StatusEffect;
 import Persistance.Combatants;
 import org.junit.jupiter.api.Test;
@@ -12,10 +13,12 @@ public class CombatantsTest {
 
     @Test
     public void GeneratedXMLTest() {
-        Combatants combatants = new Combatants();
+        Combatants combatants = new Combatants("C:\\Users\\Madly\\AppData\\Roaming\\Dungeonomicon\\test.xml");
         NonPlayerCharacter nonPlayerCharacter = new NonPlayerCharacter
         (10, new ArrayList<StatusEffect>(), 8, 12, "Jimmy");
         combatants.AddCombatant(nonPlayerCharacter);
+        PlayerCharacter playerCharacter = new PlayerCharacter(17, "George");
+        combatants.AddCombatant(playerCharacter);
         combatants.Save();
     }
 }
