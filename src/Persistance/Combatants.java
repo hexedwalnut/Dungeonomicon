@@ -105,4 +105,13 @@ public class Combatants {
         this.fileLocation = fileLocation;
         parser = new FileParser(fileLocation);
     }
+
+    /**
+     * A list of all combatants to be saved or that have been loaded.
+     *
+     * @return all combatants as an array list
+     */
+    public ArrayList<Combatant> getCombatants() {
+        return combatants;
+    }
 }
