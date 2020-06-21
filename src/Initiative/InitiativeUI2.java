@@ -26,7 +26,7 @@ public class InitiativeUI2 extends InitiativeUI{
     private ArrayList<Node> nodes;
     private GridPane gPane;
     private Stage newCombatantStage;
-    private Stage saveload;
+    private Stage saveload; //needed for the FileChooser
 
     //methods-----------------------------------------------------------------------------------------------------------
 
@@ -112,9 +112,12 @@ public class InitiativeUI2 extends InitiativeUI{
             );
             File file = fileChooser.showOpenDialog(saveload);
             Combatants combatants = new Combatants(file.getPath());
+            combatants.Load();
             for (Combatant comb: combatants.getCombatants()) {
                 initiativeTracker.addCombatant(comb);
+                System.out.println(comb);
             }
+            refresh();
         });
 
         Button saveCombatants = new Button("Save");
