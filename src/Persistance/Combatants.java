@@ -13,6 +13,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 
 public class Combatants {
@@ -37,6 +39,14 @@ public class Combatants {
      */
     public void AddCombatant(Combatant combatant) {
         combatants.add(combatant);
+    }
+
+    /**
+     * Adds a collection of combatants to the list
+     * @param combatants combatants to add.
+     */
+    public void AddCombatants(Collection<Combatant> combatants) {
+        this.combatants.addAll(combatants);
     }
 
     /**
