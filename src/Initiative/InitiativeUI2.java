@@ -72,11 +72,14 @@ public class InitiativeUI2 extends InitiativeUI{
             }
         });
 
+        Tooltip nextTip = new Tooltip("Moves through the turn order and highlights the current combatant.");
+        nextTurn.setTooltip(nextTip);
+
 
         MenuBar menuBarNewCombatant = new MenuBar();
         Menu menuNewCombatant = new Menu("New Combatant");
 
-        MenuItem itemNewCombatantNPC = new MenuItem("NPC");
+        MenuItem itemNewCombatantNPC = new MenuItem("New NPC");
         itemNewCombatantNPC.setOnAction(event -> {
             newCombatantStage = new Stage();
             newCombatantStage.setScene(new Scene(getNewNPCPane()));
@@ -86,7 +89,7 @@ public class InitiativeUI2 extends InitiativeUI{
             newCombatantStage.show();
         });
 
-        MenuItem itemNewCombatantPC = new MenuItem("PC");
+        MenuItem itemNewCombatantPC = new MenuItem("New PC");
         itemNewCombatantPC.setOnAction(event -> {
             newCombatantStage = new Stage();
             newCombatantStage.setScene(new Scene(getNewPCPane()));
@@ -120,6 +123,9 @@ public class InitiativeUI2 extends InitiativeUI{
             refresh();
         });
 
+        Tooltip loadTip = new Tooltip("Loads a XML file that contains Combatants.");
+        loadCombatants.setTooltip(loadTip);
+
         Button saveCombatants = new Button("Save");
         //saveCombatants.setStyle("-fx-background-image: url('../Persistance/saveIcon.png')");
         saveCombatants.setOnAction(event -> {
@@ -136,6 +142,9 @@ public class InitiativeUI2 extends InitiativeUI{
                 combatants.Save();
             }
         });
+
+        Tooltip saveTip = new Tooltip("Saves the current Combatants to a XML file for future use.");
+        saveCombatants.setTooltip(saveTip);
 
         bottomBox.getChildren().add(nextTurn);
         bottomBox.getChildren().add(menuBarNewCombatant);
@@ -305,6 +314,8 @@ public class InitiativeUI2 extends InitiativeUI{
                     initiativeTracker.removeCombatant(selected);
                     refresh();
                 });
+                Tooltip removeTip = new Tooltip("Removes the Combatant from the tracker.");
+                removeButton.setTooltip(removeTip);
                 //adds the remove button to the list of nodes
                 nodes.add(removeButton);
                 //creates the edit button for the combatant
@@ -313,6 +324,8 @@ public class InitiativeUI2 extends InitiativeUI{
                     //gets the combatant and generates the editing pane
                     new EditCombatant().editStage(this, combatants.get(nodes.indexOf(this) / 3)); //this has to be division, but dont know why.
                 });
+                Tooltip editTip = new Tooltip("Allows for editing of the Combatant.");
+                editCombatant.setTooltip(editTip);
                 nodes.add(editCombatant);
             }
             //adds the nodes to the grid pane in the right order
