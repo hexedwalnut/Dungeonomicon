@@ -127,6 +127,13 @@ public class InitiativeTracker {
     }
 
     /**
+     * @return the number of combatants in the initiative tracker
+     */
+    public int size(){
+        return combatants.size();
+    }
+
+    /**
      * Returns the cursor
      * @return Cursor value
      */

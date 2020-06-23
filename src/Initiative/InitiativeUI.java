@@ -234,15 +234,15 @@ public class InitiativeUI {
      * Updates the ListView
      */
     public void refresh(){
-
-        if(initiativeTracker.hasCombatants()){
-            initiativeTracker.sortCombatants();
-            ObservableList<Combatant> combatants = FXCollections.observableArrayList(initiativeTracker.getCombatants());
-            listView.getItems().removeAll();
-            listView.getItems().addAll(combatants);
-        } else{
-            listView.getItems().removeAll();
+        if (listView.getItems().size() > 1) {
+            listView.getItems().remove(0, listView.getItems().size() - 1);
+        } else if (listView.getItems().size() == 1) {
+            listView.getItems().remove(0);
         }
+
+        initiativeTracker.sortCombatants();
+        ObservableList<Combatant> combatants = FXCollections.observableArrayList(initiativeTracker.getCombatants());
+        listView.getItems().addAll(combatants);
     }
 
     /**
