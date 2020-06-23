@@ -34,7 +34,7 @@ public class StatusEffects {
     private void Initialize() {
 
         //Use FileParser to get XML Document
-        fileLocation = System.getenv("APPDATA") + fileLocation;
+        fileLocation = "./XMLFiles/StatusEffects.xml";
         parser = new FileParser(fileLocation, false);
         doc = parser.ParseFile();
 
