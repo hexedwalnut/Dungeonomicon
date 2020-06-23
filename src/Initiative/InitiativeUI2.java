@@ -7,10 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -26,7 +23,8 @@ public class InitiativeUI2 extends InitiativeUI{
     private ArrayList<Node> nodes;
     private GridPane gPane;
     private Stage newCombatantStage;
-    private Stage saveload;
+    private Stage saveload; //needed for the FileChooser
+    private Stage statusEffectsStage;
 
     //methods-----------------------------------------------------------------------------------------------------------
 
@@ -72,11 +70,14 @@ public class InitiativeUI2 extends InitiativeUI{
             }
         });
 
+        Tooltip nextTip = new Tooltip("Moves through the turn order and highlights the current combatant.");
+        nextTurn.setTooltip(nextTip);
+
 
         MenuBar menuBarNewCombatant = new MenuBar();
         Menu menuNewCombatant = new Menu("New Combatant");
 
-        MenuItem itemNewCombatantNPC = new MenuItem("NPC");
+        MenuItem itemNewCombatantNPC = new MenuItem("New NPC");
         itemNewCombatantNPC.setOnAction(event -> {
             newCombatantStage = new Stage();
             newCombatantStage.setScene(new Scene(getNewNPCPane()));
@@ -86,7 +87,7 @@ public class InitiativeUI2 extends InitiativeUI{
             newCombatantStage.show();
         });
 
-        MenuItem itemNewCombatantPC = new MenuItem("PC");
+        MenuItem itemNewCombatantPC = new MenuItem("New PC");
         itemNewCombatantPC.setOnAction(event -> {
             newCombatantStage = new Stage();
             newCombatantStage.setScene(new Scene(getNewPCPane()));
@@ -112,10 +113,16 @@ public class InitiativeUI2 extends InitiativeUI{
             );
             File file = fileChooser.showOpenDialog(saveload);
             Combatants combatants = new Combatants(file.getPath());
+            combatants.Load();
             for (Combatant comb: combatants.getCombatants()) {
                 initiativeTracker.addCombatant(comb);
+                System.out.println(comb);
             }
+            refresh();
         });
+
+        Tooltip loadTip = new Tooltip("Loads a XML file that contains Combatants.");
+        loadCombatants.setTooltip(loadTip);
 
         Button saveCombatants = new Button("Save");
         //saveCombatants.setStyle("-fx-background-image: url('../Persistance/saveIcon.png')");
@@ -133,6 +140,9 @@ public class InitiativeUI2 extends InitiativeUI{
                 combatants.Save();
             }
         });
+
+        Tooltip saveTip = new Tooltip("Saves the current Combatants to a XML file for future use.");
+        saveCombatants.setTooltip(saveTip);
 
         bottomBox.getChildren().add(nextTurn);
         bottomBox.getChildren().add(menuBarNewCombatant);
@@ -263,7 +273,34 @@ public class InitiativeUI2 extends InitiativeUI{
         return gridPane;
     }
 
+    public BorderPane getStatusPane(Combatant combatant){
+        BorderPane borderPane = new BorderPane();
+        HBox topBox = new HBox();
+        HBox botBox = new HBox();
+        GridPane gridPane = new GridPane();
 
+        Label combInfo = new Label(combatant.toString());
+        topBox.getChildren().add(combInfo);
+
+        Menu addEffectMenu = new Menu("New Effect");
+        MenuBar effectsMenuBar = new MenuBar();
+
+        MenuItem newStandardEffect = new MenuItem("Standard Effect");
+        MenuItem newCustomEffect = new MenuItem("Custom Effect");
+
+        addEffectMenu.getItems().addAll(newStandardEffect,newCustomEffect);
+
+        effectsMenuBar.getMenus().add(addEffectMenu);
+
+        botBox.getChildren().add(effectsMenuBar);
+
+        borderPane.setBottom(botBox);
+        borderPane.setCenter(gridPane);
+        borderPane.setTop(topBox);
+
+        borderPane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
+        return borderPane;
+    }
 
     /**
      * Gets initiativeTracker
@@ -293,30 +330,52 @@ public class InitiativeUI2 extends InitiativeUI{
             for (Combatant combatant : combatants) {
                 //creates the label that holds the combatants info
                 nodes.add(new Label(combatant.toString()));
+
+                Button statusEffectsButton = new Button("Effects");
+                statusEffectsButton.setOnAction(event -> {
+                    Combatant selected = combatants.get(nodes.indexOf(this) / 4);
+                    statusEffectsStage = new Stage();
+                    statusEffectsStage.setScene(new Scene(getStatusPane(selected)));
+                    statusEffectsStage.setTitle(selected.getName()+"'s Current Effects");
+                    statusEffectsStage.setResizable(true);
+                    statusEffectsStage.sizeToScene();
+                    statusEffectsStage.show();
+                });
+                Tooltip statsEffectsTip = new Tooltip("Brings up a interface to view the " +
+                        "Combatants status effects");
+                statusEffectsButton.setTooltip(statsEffectsTip);
+                nodes.add(statusEffectsButton);
+
                 //creates the remove button for the combatant
                 Button removeButton = new Button("Remove");
                 removeButton.setOnAction(event -> {
                     //gets the combatant based on location in a list
-                    Combatant selected = combatants.get(nodes.indexOf(this) / 3); //this has to be division, but dont know why.
+                    Combatant selected = combatants.get(nodes.indexOf(this) / 4); //this has to be division, but dont know why.
                     //removes the combatant and updates the display
                     initiativeTracker.removeCombatant(selected);
                     refresh();
                 });
+                Tooltip removeTip = new Tooltip("Removes the Combatant from the tracker.");
+                removeButton.setTooltip(removeTip);
                 //adds the remove button to the list of nodes
                 nodes.add(removeButton);
+
                 //creates the edit button for the combatant
                 Button editCombatant = new Button("Edit");
                 editCombatant.setOnAction(event -> {
                     //gets the combatant and generates the editing pane
-                    new EditCombatant().editStage(this, combatants.get(nodes.indexOf(this) / 3)); //this has to be division, but dont know why.
+                    new EditCombatant().editStage(this, combatants.get(nodes.indexOf(this) / 4)); //this has to be division, but dont know why.
                 });
+                Tooltip editTip = new Tooltip("Allows for editing of the Combatant.");
+                editCombatant.setTooltip(editTip);
                 nodes.add(editCombatant);
             }
             //adds the nodes to the grid pane in the right order
-            for (int i = 0; i < nodes.size(); i += 3) {
+            for (int i = 0; i < nodes.size(); i += 4) {
                 gPane.add(nodes.get((i)), 0, i);
                 gPane.add(nodes.get((i) + 1), 1, i);
                 gPane.add(nodes.get((i) + 2), 2, i);
+                gPane.add(nodes.get((i) + 3), 3, i);
             }
         }
     }
