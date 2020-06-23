@@ -25,6 +25,7 @@ public class InitiativeUI2 extends InitiativeUI{
     private Stage newCombatantStage;
     private Stage saveload; //needed for the FileChooser
     private Stage statusEffectsStage;
+    private Stage newStatusEffectsStage;
 
     //methods-----------------------------------------------------------------------------------------------------------
 
@@ -112,13 +113,15 @@ public class InitiativeUI2 extends InitiativeUI{
                     new FileChooser.ExtensionFilter("All Images", "*.*")
             );
             File file = fileChooser.showOpenDialog(saveload);
-            Combatants combatants = new Combatants(file.getPath());
-            combatants.Load();
-            for (Combatant comb: combatants.getCombatants()) {
-                initiativeTracker.addCombatant(comb);
-                System.out.println(comb);
+            if(file != null) {
+                Combatants combatants = new Combatants(file.getPath());
+                combatants.Load();
+                for (Combatant comb : combatants.getCombatants()) {
+                    initiativeTracker.addCombatant(comb);
+                    System.out.println(comb);
+                }
+                refresh();
             }
-            refresh();
         });
 
         Tooltip loadTip = new Tooltip("Loads a XML file that contains Combatants.");
@@ -287,6 +290,14 @@ public class InitiativeUI2 extends InitiativeUI{
 
         MenuItem newStandardEffect = new MenuItem("Standard Effect");
         MenuItem newCustomEffect = new MenuItem("Custom Effect");
+        newCustomEffect.setOnAction(event -> {
+            newStatusEffectsStage = new Stage();
+            newStatusEffectsStage.setScene(new Scene(getCustomEffectPane()));
+            newStatusEffectsStage.setTitle("Create a New Custom Status Effect");
+            newStatusEffectsStage.setResizable(true);
+            newStatusEffectsStage.sizeToScene();
+            newStatusEffectsStage.show();
+        });
 
         addEffectMenu.getItems().addAll(newStandardEffect,newCustomEffect);
 
@@ -299,6 +310,46 @@ public class InitiativeUI2 extends InitiativeUI{
         borderPane.setTop(topBox);
 
         borderPane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
+        return borderPane;
+    }
+
+    public BorderPane getCustomEffectPane(){
+        BorderPane borderPane = new BorderPane();
+        GridPane gPane = new GridPane();
+        Label effectNameLabel = new Label("Effect Name: ");
+        TextField effectNameText = new TextField();
+        effectNameText.setPromptText("Crushed");
+        Label effectDescLabel = new Label("Effect Description: ");
+        TextArea effectDescText = new TextArea();
+        effectDescText.setPromptText("The player is crushed under large debresis. " +
+                "\n Player Takes a -4 to all checks");
+        Label durationLabel = new Label("Duration: ");
+        Spinner<Integer> durationSpinner = new Spinner<Integer>(0,Integer.MAX_VALUE, 0);
+        durationSpinner.setStyle(Spinner.STYLE_CLASS_ARROWS_ON_RIGHT_HORIZONTAL);
+        durationSpinner.setEditable(true);
+        Spinner<String> unitsSpinner = new Spinner<String>();
+        ObservableList<String> units = FXCollections.observableArrayList("Second(s)", "Round(s)","Minute(s)",
+                "Hour(s)","Day(s)");
+        SpinnerValueFactory<String> valueFactory = new SpinnerValueFactory.ListSpinnerValueFactory<String>(units);
+        unitsSpinner.setValueFactory(valueFactory);
+        unitsSpinner.setStyle(Spinner.STYLE_CLASS_SPLIT_ARROWS_VERTICAL);
+
+        gPane.add(effectNameLabel, 0, 0);
+        gPane.add(effectNameText, 1, 0,2,1);
+        gPane.add(effectDescLabel,0,1);
+        gPane.add(effectDescText,1,1,2,2);
+        gPane.add(durationLabel,0,3);
+        gPane.add(durationSpinner,1,3);
+        gPane.add(unitsSpinner,2,3);
+
+        borderPane.setCenter(gPane);
+        borderPane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
+        return borderPane;
+    }
+
+    public BorderPane getStandardEffectPane(){
+        BorderPane borderPane = new BorderPane();
+
         return borderPane;
     }
 
