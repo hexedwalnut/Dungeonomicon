@@ -88,11 +88,8 @@ public class Combatants {
         doc = parser.ParseFile();
 
         NodeList xmlCombatants = doc.getElementsByTagName("Combatant");
-        System.out.println(xmlCombatants.item(0).toString());
+
         for(int i = 0; i < xmlCombatants.getLength(); i++) {
-            if(xmlCombatants.item(i).toString().equals("[Combatant: null]")) {
-                continue;
-            }
             Node xmlCombatant = xmlCombatants.item(i);
             if(xmlCombatant.getAttributes().getNamedItem("type").getNodeValue().equals("PlayerCharacter")) {
                 PlayerCharacter playerCharacter = new PlayerCharacter();

@@ -95,8 +95,16 @@ public class NonPlayerCharacter extends Combatant {
                 }
             }
 
-            this.setHitPoints(Integer.parseInt(eNode.getElementsByTagName("HitPoints").item(0).getNodeValue()));
-            this.setArmorClass(Integer.parseInt(eNode.getElementsByTagName("ArmorClass").item(0).getNodeValue()));
+            for(int i = 0; i < eNode.getChildNodes().getLength(); i++) {
+                switch (eNode.getChildNodes().item(i).getNodeName()) {
+                    case "HitPoints":
+                        this.setHitPoints(Integer.parseInt(eNode.getChildNodes().item(i).getTextContent()));
+                        break;
+                    case "ArmorClass":
+                        this.setArmorClass(Integer.parseInt(eNode.getChildNodes().item(i).getTextContent()));
+                        break;
+                }
+            }
         }
     }
 
