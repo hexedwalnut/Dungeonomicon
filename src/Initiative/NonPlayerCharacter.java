@@ -60,8 +60,17 @@ public class NonPlayerCharacter extends Combatant {
      * This method increments the NonPlayerCharacter's hit points by an increment
      * @param increment how much the hit points are incremented by
      */
-    public void incrementHitPoints(int increment){
-        this.hitPoints+=increment;
+    public void incrementHitPoints(String increment){
+        if (increment.charAt(0) == '+'){
+            setHitPoints(getHitPoints() + Integer.parseInt(increment.substring(1)));
+        } else if(increment.charAt(0) == '-'){
+            setHitPoints(getHitPoints() - Integer.parseInt(increment.substring(1)));
+            if(getHitPoints() < 0) {
+                setHitPoints(0);
+            }
+        } else {
+            setHitPoints(Integer.parseInt(increment));
+        }
     }
 
     @Override
