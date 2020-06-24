@@ -165,6 +165,9 @@ public class InitiativeUI2 extends InitiativeUI{
         borderPane.setTop(topBox);
         borderPane.setBottom(bottomBox);
 
+        borderPane.setMinWidth(400);
+        borderPane.setMinHeight(150);
+
         borderPane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
 
         return borderPane;
@@ -288,6 +291,34 @@ public class InitiativeUI2 extends InitiativeUI{
         Label combInfo = new Label(combatant.toString());
         topBox.getChildren().add(combInfo);
 
+        ArrayList<StatusEffect> statusEffects = combatant.getStatusEffects();
+        ArrayList<Node> statusNodes = new ArrayList<Node>();
+
+        for(int i = 0; i < statusEffects.size(); i++){
+            StatusEffect statEffect = statusEffects.get(i);
+            Label status = new Label(statEffect.getName()+": "+statEffect.getDescription());
+            Button remove = new Button("", new ImageView(new Image("/Persistence/icons/x.png")));
+            remove.setOnAction(event -> {
+                combatant.removeStatusEffect(statusEffects.get(nodes.indexOf(this)/2)); //this has to be division, but dont know why.
+                if(statusEffectsStage != null){
+                    statusEffectsStage.close();
+                }
+                statusEffectsStage = new Stage();
+                statusEffectsStage.setScene(new Scene(getStatusPane(combatant)));
+                statusEffectsStage.setTitle(combatant.getName()+"'s Current Effects");
+                statusEffectsStage.setResizable(true);
+                statusEffectsStage.sizeToScene();
+                statusEffectsStage.show();
+            });
+
+            statusNodes.add(status);
+            statusNodes.add(remove);
+        }
+
+        for(int i = 0; i < statusNodes.size(); i +=2){
+            gridPane.add(statusNodes.get(i),1,i);
+            gridPane.add(statusNodes.get(i+1),2,i);
+        }
         Menu addEffectMenu = new Menu("New Effect");
         MenuBar effectsMenuBar = new MenuBar();
 
@@ -295,7 +326,7 @@ public class InitiativeUI2 extends InitiativeUI{
         MenuItem newCustomEffect = new MenuItem("Custom Effect");
         newCustomEffect.setOnAction(event -> {
             newStatusEffectsStage = new Stage();
-            newStatusEffectsStage.setScene(new Scene(getCustomEffectPane()));
+            newStatusEffectsStage.setScene(new Scene(getCustomEffectPane(combatant)));
             newStatusEffectsStage.setTitle("Create a New Custom Status Effect");
             newStatusEffectsStage.setResizable(true);
             newStatusEffectsStage.sizeToScene();
@@ -312,11 +343,14 @@ public class InitiativeUI2 extends InitiativeUI{
         borderPane.setCenter(gridPane);
         borderPane.setTop(topBox);
 
+        borderPane.setMinHeight(100);
+        borderPane.setMinWidth(300);
+
         borderPane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
         return borderPane;
     }
 
-    public BorderPane getCustomEffectPane(){
+    public BorderPane getCustomEffectPane(Combatant combatant){
         BorderPane borderPane = new BorderPane();
         GridPane gPane = new GridPane();
         Label effectNameLabel = new Label("Effect Name: ");
@@ -328,14 +362,28 @@ public class InitiativeUI2 extends InitiativeUI{
                 "\n Player Takes a -4 to all checks");
         Label durationLabel = new Label("Duration: ");
         Spinner<Integer> durationSpinner = new Spinner<Integer>(0,Integer.MAX_VALUE, 0);
-        durationSpinner.setStyle(Spinner.STYLE_CLASS_ARROWS_ON_RIGHT_HORIZONTAL);
         durationSpinner.setEditable(true);
         Spinner<String> unitsSpinner = new Spinner<String>();
         ObservableList<String> units = FXCollections.observableArrayList("Second(s)", "Round(s)","Minute(s)",
                 "Hour(s)","Day(s)");
         SpinnerValueFactory<String> valueFactory = new SpinnerValueFactory.ListSpinnerValueFactory<String>(units);
         unitsSpinner.setValueFactory(valueFactory);
-        unitsSpinner.setStyle(Spinner.STYLE_CLASS_SPLIT_ARROWS_VERTICAL);
+        unitsSpinner.getStyleClass().add(Spinner.STYLE_CLASS_SPLIT_ARROWS_VERTICAL);
+
+        Button okButton = new Button("", new ImageView(new Image("/Persistence/icons/new.png")));
+        okButton.setOnAction(event -> {
+            combatant.addStatusEffect(new StatusEffect(effectNameText.getText(), effectDescText.getText()));
+            if(statusEffectsStage != null){
+                statusEffectsStage.close();
+            }
+            statusEffectsStage = new Stage();
+            statusEffectsStage.setScene(new Scene(getStatusPane(combatant)));
+            statusEffectsStage.setTitle(combatant.getName()+"'s Current Effects");
+            statusEffectsStage.setResizable(true);
+            statusEffectsStage.sizeToScene();
+            statusEffectsStage.show();
+            newStatusEffectsStage.close();
+        });
 
         gPane.add(effectNameLabel, 0, 0);
         gPane.add(effectNameText, 1, 0,2,1);
@@ -344,6 +392,7 @@ public class InitiativeUI2 extends InitiativeUI{
         gPane.add(durationLabel,0,3);
         gPane.add(durationSpinner,1,3);
         gPane.add(unitsSpinner,2,3);
+        gPane.add(okButton, 1,4);
 
         borderPane.setCenter(gPane);
         borderPane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());

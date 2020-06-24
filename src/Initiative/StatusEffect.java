@@ -7,6 +7,8 @@ public class StatusEffect {
     //Variables---------------------------------------------------------------------------------------------------------
     private String name; //Status effect Name
     private String description; //Status effect Description
+    private int duration;
+    private String units;
 
     //Methods-----------------------------------------------------------------------------------------------------------
 
