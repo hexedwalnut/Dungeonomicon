@@ -56,15 +56,7 @@ public class EditCombatant {
                     }
                 }
                 if (!healthText.getText().equals("") && combatant instanceof NonPlayerCharacter) {
-                    if (healthText.getText().charAt(0) == '+'){
-                        ((NonPlayerCharacter)combatant).setHitPoints(((NonPlayerCharacter)combatant).getHitPoints()
-                                + Integer.parseInt(healthText.getText().substring(1)));
-                    } else if(healthText.getText().charAt(0) == '-'){
-                        ((NonPlayerCharacter)combatant).setHitPoints(((NonPlayerCharacter)combatant).getHitPoints()
-                                - Integer.parseInt(healthText.getText().substring(1)));
-                    } else {
-                        ((NonPlayerCharacter)combatant).setHitPoints(Integer.parseInt(healthText.getText()));
-                    }
+                    ((NonPlayerCharacter)combatant).incrementHitPoints(healthText.getText());
                 }
                 if (!acText.getText().equals("") && combatant instanceof NonPlayerCharacter) {
                     if (acText.getText().charAt(0) == '+'){
