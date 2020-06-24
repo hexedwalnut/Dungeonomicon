@@ -1,4 +1,4 @@
-package Persistance;
+package Persistence;
 
 import Initiative.Combatant;
 import Initiative.NonPlayerCharacter;
@@ -6,7 +6,6 @@ import Initiative.PlayerCharacter;
 import Initiative.StatusEffect;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 public class SettingsStorage {
     private static final String fileLocation = "";

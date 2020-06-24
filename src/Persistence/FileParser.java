@@ -1,4 +1,4 @@
-package Persistance;
+package Persistence;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

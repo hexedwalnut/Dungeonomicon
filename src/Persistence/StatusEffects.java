@@ -1,4 +1,4 @@
-package Persistance;
+package Persistence;
 
 import Initiative.StatusEffect;
 import org.w3c.dom.Document;

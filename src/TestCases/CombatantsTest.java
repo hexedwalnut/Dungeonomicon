@@ -4,7 +4,7 @@ import Initiative.Combatant;
 import Initiative.NonPlayerCharacter;
 import Initiative.PlayerCharacter;
 import Initiative.StatusEffect;
-import Persistance.Combatants;
+import Persistence.Combatants;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

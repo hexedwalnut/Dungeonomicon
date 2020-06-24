@@ -1,6 +1,6 @@
 package Initiative;
 
-import Persistance.StatusEffects;
+import Persistence.StatusEffects;
 import javafx.scene.layout.Pane;
 import org.w3c.dom.*;
 

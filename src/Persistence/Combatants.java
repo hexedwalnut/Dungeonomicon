@@ -1,4 +1,4 @@
-package Persistance;
+package Persistence;
 
 import Initiative.Combatant;
 import Initiative.NonPlayerCharacter;
@@ -14,7 +14,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 
 public class Combatants {

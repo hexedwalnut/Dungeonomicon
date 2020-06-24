@@ -2,9 +2,7 @@ package TestCases;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import Persistance.FileParser;
-import Persistance.SettingsStorage;
-import Persistance.StatusEffects;
+import Persistence.StatusEffects;
 
 
 class PersistanceTest {

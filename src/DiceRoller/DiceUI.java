@@ -1,6 +1,6 @@
 package DiceRoller;
 
-import Persistance.SettingsStorage;
+import Persistence.SettingsStorage;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

@@ -1,7 +1,7 @@
 import DiceRoller.DiceUI;
 import Initiative.InitiativeUI;
 import Initiative.InitiativeUI2;
-import Persistance.SettingsStorage;
+import Persistence.SettingsStorage;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,8 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import javax.security.auth.login.LoginContext;
 
 /**
  * Main JavaFX application launcher for the dungeonomicon table top role playing game assistance software.

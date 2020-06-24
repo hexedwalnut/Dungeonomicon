@@ -1,12 +1,15 @@
 package Initiative;
 
-import Persistance.Combatants;
-import Persistance.SettingsStorage;
+import Persistence.Combatants;
+import Persistence.SettingsStorage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -48,7 +51,7 @@ public class InitiativeUI2 extends InitiativeUI{
         initiativeTracker = new InitiativeTracker();
 
         //creates the buttons and adds their functionality
-        Button nextTurn = new Button("Next Turn");
+        Button nextTurn = new Button("", new ImageView(new Image("/Persistence/icons/nextTurn.png")));
         nextTurn.setOnAction(event -> {
             //resets the style of every node(removes the highlight)
             for(Node node: gPane.getChildren()){
@@ -63,7 +66,7 @@ public class InitiativeUI2 extends InitiativeUI{
                 //gets the current combatants position
                 int currentCombNum = initiativeTracker.getCursor();
                 //sets the highlight
-                gPane.getChildren().get(currentCombNum*3).setStyle("-fx-background-color: #424549");
+                gPane.getChildren().get(currentCombNum*4).setStyle("-fx-background-color: #424549");
 
             }catch(IndexOutOfBoundsException e){
                 new errorWindow().errorWindow("No Combatants to have a turn!\n Please add some Combatants and try " +
@@ -76,7 +79,7 @@ public class InitiativeUI2 extends InitiativeUI{
 
 
         MenuBar menuBarNewCombatant = new MenuBar();
-        Menu menuNewCombatant = new Menu("New Combatant");
+        Menu menuNewCombatant = new Menu("", new ImageView(new Image("/Persistence/icons/new.png")));
 
         MenuItem itemNewCombatantNPC = new MenuItem("New NPC");
         itemNewCombatantNPC.setOnAction(event -> {
@@ -102,8 +105,7 @@ public class InitiativeUI2 extends InitiativeUI{
         menuBarNewCombatant.getMenus().add(menuNewCombatant);
 
 
-        Button loadCombatants = new Button("Load");
-        //loadCombatants.setStyle("-fx-background-image: url('../Persistance/Upload-Folder-512.png')");
+        Button loadCombatants = new Button("", new ImageView(new Image("/Persistence/icons/load.png")));
         loadCombatants.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Load Combatants");
@@ -127,8 +129,7 @@ public class InitiativeUI2 extends InitiativeUI{
         Tooltip loadTip = new Tooltip("Loads a XML file that contains Combatants.");
         loadCombatants.setTooltip(loadTip);
 
-        Button saveCombatants = new Button("Save");
-        //saveCombatants.setStyle("-fx-background-image: url('../Persistance/saveIcon.png')");
+        Button saveCombatants = new Button("", new ImageView(new Image("/Persistence/icons/save.png")));
         saveCombatants.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Save Combatants");
@@ -151,6 +152,8 @@ public class InitiativeUI2 extends InitiativeUI{
         bottomBox.getChildren().add(menuBarNewCombatant);
         bottomBox.getChildren().add(loadCombatants);
         bottomBox.getChildren().add(saveCombatants);
+        bottomBox.setAlignment(Pos.CENTER);
+        bottomBox.prefWidthProperty().bind(borderPane.widthProperty());
 
         topBox.getChildren().add(currentCombatant);
 
@@ -382,7 +385,7 @@ public class InitiativeUI2 extends InitiativeUI{
                 //creates the label that holds the combatants info
                 nodes.add(new Label(combatant.toString()));
 
-                Button statusEffectsButton = new Button("Effects");
+                Button statusEffectsButton = new Button("", new ImageView(new Image("/Persistence/icons/effects.png")));
                 statusEffectsButton.setOnAction(event -> {
                     Combatant selected = combatants.get(nodes.indexOf(this) / 4);
                     statusEffectsStage = new Stage();
@@ -398,7 +401,7 @@ public class InitiativeUI2 extends InitiativeUI{
                 nodes.add(statusEffectsButton);
 
                 //creates the remove button for the combatant
-                Button removeButton = new Button("Remove");
+                Button removeButton = new Button("", new ImageView(new Image("/Persistence/icons/x.png")));
                 removeButton.setOnAction(event -> {
                     //gets the combatant based on location in a list
                     Combatant selected = combatants.get(nodes.indexOf(this) / 4); //this has to be division, but dont know why.
@@ -412,7 +415,7 @@ public class InitiativeUI2 extends InitiativeUI{
                 nodes.add(removeButton);
 
                 //creates the edit button for the combatant
-                Button editCombatant = new Button("Edit");
+                Button editCombatant = new Button("", new ImageView(new Image("/Persistence/icons/settings.png")));
                 editCombatant.setOnAction(event -> {
                     //gets the combatant and generates the editing pane
                     new EditCombatant().editStage(this, combatants.get(nodes.indexOf(this) / 4)); //this has to be division, but dont know why.
