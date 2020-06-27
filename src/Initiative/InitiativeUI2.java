@@ -2,6 +2,9 @@ package Initiative;
 
 import Persistence.Combatants;
 import Persistence.SettingsStorage;
+import Persistence.StatusEffects;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -13,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.omg.CORBA.portable.ValueFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -29,6 +33,7 @@ public class InitiativeUI2 extends InitiativeUI{
     private Stage saveload; //needed for the FileChooser
     private Stage statusEffectsStage;
     private Stage newStatusEffectsStage;
+    private StatusEffects effects;
 
     //methods-----------------------------------------------------------------------------------------------------------
 
@@ -323,6 +328,14 @@ public class InitiativeUI2 extends InitiativeUI{
         MenuBar effectsMenuBar = new MenuBar();
 
         MenuItem newStandardEffect = new MenuItem("Standard Effect");
+        newStandardEffect.setOnAction(event -> {
+            newStatusEffectsStage = new Stage();
+            newStatusEffectsStage.setScene(new Scene(getStandardEffectPane(combatant)));
+            newStatusEffectsStage.setTitle("Add a Status Effect");
+            newStatusEffectsStage.setResizable(true);
+            newStatusEffectsStage.sizeToScene();
+            newStatusEffectsStage.show();
+        });
         MenuItem newCustomEffect = new MenuItem("Custom Effect");
         newCustomEffect.setOnAction(event -> {
             newStatusEffectsStage = new Stage();
@@ -399,9 +412,57 @@ public class InitiativeUI2 extends InitiativeUI{
         return borderPane;
     }
 
-    public BorderPane getStandardEffectPane(){
+    public BorderPane getStandardEffectPane(Combatant combatant){
         BorderPane borderPane = new BorderPane();
+        GridPane gPane = new GridPane();
+        Label effectDescLabel = new Label("Effect Description: ");
+        Label effectDescText = new Label();
+        Label effectNameLabel = new Label("Effect Name: ");
+        Spinner<String> effectNameText = new Spinner<>();
+        ObservableList<String> effectsNames = FXCollections.observableArrayList(effects.getAllEffectNames());
+        SpinnerValueFactory<String> effectsSpinner = new SpinnerValueFactory.ListSpinnerValueFactory<String>(effectsNames);
+        effectNameText.setValueFactory(effectsSpinner);
+        effectDescText.setText(effects.getEffectByName(effectNameText.getValue()).getDescription());
+        effectNameText.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                effectDescText.setText(effects.getEffectByName(newValue).getDescription());
+            }
+        });
 
+        Label durationLabel = new Label("Duration: ");
+        Spinner<Integer> durationSpinner = new Spinner<Integer>(0,Integer.MAX_VALUE, 0);
+        durationSpinner.setEditable(true);
+        Spinner<String> unitsSpinner = new Spinner<String>();
+        ObservableList<String> units = FXCollections.observableArrayList("Second(s)", "Round(s)","Minute(s)",
+                "Hour(s)","Day(s)");
+        SpinnerValueFactory<String> valueFactory = new SpinnerValueFactory.ListSpinnerValueFactory<String>(units);
+        unitsSpinner.setValueFactory(valueFactory);
+        unitsSpinner.getStyleClass().add(Spinner.STYLE_CLASS_SPLIT_ARROWS_VERTICAL);
+
+        Button okButton = new Button("", new ImageView(new Image("/Persistence/icons/new.png")));
+        okButton.setOnAction(event -> {
+            combatant.addStatusEffect(effects.getEffectByName(effectNameText.getValue()));
+            statusEffectsStage = new Stage();
+            statusEffectsStage.setScene(new Scene(getStatusPane(combatant)));
+            statusEffectsStage.setTitle(combatant.getName()+"'s Current Effects");
+            statusEffectsStage.setResizable(true);
+            statusEffectsStage.sizeToScene();
+            statusEffectsStage.show();
+            newStatusEffectsStage.close();
+        });
+
+        gPane.add(effectNameLabel, 0, 0);
+        gPane.add(effectNameText, 1, 0,2,1);
+        gPane.add(effectDescLabel,0,1);
+        gPane.add(effectDescText,1,1,2,2);
+        gPane.add(durationLabel,0,3);
+        gPane.add(durationSpinner,1,3);
+        gPane.add(unitsSpinner,2,3);
+        gPane.add(okButton, 1,4);
+
+        borderPane.setCenter(gPane);
+        borderPane.getStylesheets().add(SettingsStorage.class.getResource("main.css").toExternalForm());
         return borderPane;
     }
 
@@ -488,6 +549,8 @@ public class InitiativeUI2 extends InitiativeUI{
      */
     public void initStage(){
         initStage = new Stage();
+        effects = new StatusEffects();
+        effects = new StatusEffects();
         initStage.setResizable(true);
         initStage.setScene(new Scene(getInitPane()));
         initStage.sizeToScene();
