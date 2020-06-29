@@ -304,7 +304,7 @@ public class InitiativeUI2 extends InitiativeUI{
             Label status = new Label(statEffect.getName()+": "+statEffect.getDescription());
             Button remove = new Button("", new ImageView(new Image("/Persistence/icons/x.png")));
             remove.setOnAction(event -> {
-                combatant.removeStatusEffect(statusEffects.get(nodes.indexOf(this)/2)); //this has to be division, but dont know why.
+                combatant.removeStatusEffect(statusEffects.get(statusNodes.indexOf(remove)-1));
                 if(statusEffectsStage != null){
                     statusEffectsStage.close();
                 }
@@ -497,7 +497,7 @@ public class InitiativeUI2 extends InitiativeUI{
 
                 Button statusEffectsButton = new Button("", new ImageView(new Image("/Persistence/icons/effects.png")));
                 statusEffectsButton.setOnAction(event -> {
-                    Combatant selected = combatants.get(nodes.indexOf(this) / 4);
+                    Combatant selected = combatants.get(nodes.indexOf(statusEffectsButton) - 1);
                     statusEffectsStage = new Stage();
                     statusEffectsStage.setScene(new Scene(getStatusPane(selected)));
                     statusEffectsStage.setTitle(selected.getName()+"'s Current Effects");
@@ -514,7 +514,7 @@ public class InitiativeUI2 extends InitiativeUI{
                 Button removeButton = new Button("", new ImageView(new Image("/Persistence/icons/x.png")));
                 removeButton.setOnAction(event -> {
                     //gets the combatant based on location in a list
-                    Combatant selected = combatants.get(nodes.indexOf(this) / 4); //this has to be division, but dont know why.
+                    Combatant selected = combatants.get(nodes.indexOf(removeButton) - 2);
                     //removes the combatant and updates the display
                     initiativeTracker.removeCombatant(selected);
                     refresh();
@@ -528,7 +528,7 @@ public class InitiativeUI2 extends InitiativeUI{
                 Button editCombatant = new Button("", new ImageView(new Image("/Persistence/icons/settings.png")));
                 editCombatant.setOnAction(event -> {
                     //gets the combatant and generates the editing pane
-                    new EditCombatant().editStage(this, combatants.get(nodes.indexOf(this) / 4)); //this has to be division, but dont know why.
+                    new EditCombatant().editStage(this, combatants.get(nodes.indexOf(editCombatant) - 3));
                 });
                 Tooltip editTip = new Tooltip("Allows for editing of the Combatant.");
                 editCombatant.setTooltip(editTip);
