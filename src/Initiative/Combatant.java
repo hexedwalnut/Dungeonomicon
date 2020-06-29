@@ -21,6 +21,7 @@ public abstract class Combatant implements Comparable<Combatant> {
     Combatant() {
         this.initiative = 0;
         this.name = "NoName";
+        this.statusEffects = new ArrayList<>();
     }
 
     /**
