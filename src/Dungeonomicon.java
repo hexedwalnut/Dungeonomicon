@@ -2,6 +2,7 @@ import DiceRoller.DiceUI;
 import Initiative.InitiativeUI;
 import Initiative.InitiativeUI2;
 import Persistence.SettingsStorage;
+import Settings.SettingUI;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -57,7 +58,7 @@ public class Dungeonomicon extends Application {
         //Buttons
         Button settings = new Button("Settings");
         settings.maxWidthProperty().bind(pane.widthProperty());
-        //TODO create settings stage
+        settings.setOnAction(event -> new SettingUI().settingStage());
 
         Button diceRoller = new Button("Dice Roller");
         diceRoller.maxWidthProperty().bind(pane.widthProperty());

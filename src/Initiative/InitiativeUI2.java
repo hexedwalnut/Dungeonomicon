@@ -550,7 +550,6 @@ public class InitiativeUI2 extends InitiativeUI{
     public void initStage(){
         initStage = new Stage();
         effects = new StatusEffects();
-        effects = new StatusEffects();
         initStage.setResizable(true);
         initStage.setScene(new Scene(getInitPane()));
         initStage.sizeToScene();
